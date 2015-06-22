@@ -1614,3 +1614,4 @@ Traceback (most recent call last):
   File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 459, in reap_workers
     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
 gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+./start_gnicorn.sh: line 16: exec: gunicorn: not found
