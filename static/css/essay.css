@@ -25,6 +25,7 @@
     font-size: 16px;
     line-height: 170%;
     font-weight: 300;
+    letter-spacing: .3px;
 }
 
 .main-text p{
@@ -41,7 +42,7 @@
 .main-text .inline-image {
     max-width: 100%;
     width: 100%;
-    margin:0 auto;
+    margin:10px auto;
     display: block;
 }
 
@@ -95,6 +96,12 @@
 /* Main Text - Tables */
 .main-text table {
     font-size: 14px;
+}
+
+
+/* Main Text - Code Snippets */
+code[class*="language-"], pre[class*="language-"] {
+    text-shadow: none !important;
 }
 
 
