@@ -1,0 +1,9 @@
+michaelism/settings_dev.*
+.DS_Store
+include/
+bin/
+lib/
+pip-selfcheck.json
+*.pyc
+*.pem
+

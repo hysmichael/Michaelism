@@ -1,0 +1,55 @@
+
+/*offset for navigation bar */
+body { 
+    padding-top: 70px; 
+    font-family: 'Oxygen', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+.font-light {
+    font-weight: 300;
+}
+
+.font-normal {
+    font-weight: 400;
+}
+
+.font-heavy {
+    font-weight: 700;
+}
+
+/* Restraints */
+.restrained-width {
+    max-width: 800px;
+}
+
+.navbar {
+    background-color: white;
+    border: none;
+}
+
+.navbar-brand {
+    color: black !important;
+}
+
+@media(min-width: 768px) {
+    .navbar-nav>li>a {
+        padding-top: 16px;
+    }   
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover {
+    background-color: transparent;
+    font-weight: 700;
+    color: black;
+}
+
+a {
+    color: #0A0A33;
+}
+
+a:focus, a:hover {
+    color: #2E8AE6;
+    text-decoration: none;
+}

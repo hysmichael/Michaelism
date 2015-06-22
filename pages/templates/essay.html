@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} {{ essay.title }} {% endblock %}
+
+{% block css %}
+<link href={% static "css/essay.css" %} rel="stylesheet">
+<link href={% static "prism/css/prism.css"%} rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <div class="title">
+      <h3> {{ essay.title }} </h3>
+      <p> Posted on {{ essay.posted_at }} </p>
+
+      {% if related_essays %}
+          <p> This essay is also available in: 
+              {% for e in related_essays %}
+                <a href={{e.get_absolute_url}}> {{e.language.full_name}} </a> &nbsp
+              {% endfor %}
+          </p>
+      {% endif %}
+    </div>
+
+    {% if essay.preface %}
+      <div class="panel panel-default restrained-width">
+        <div class="panel-body">
+          {{ essay.preface }}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class='main-text restrained-width'>
+    {% autoescape off %}
+      <p> {{ essay_body|linebreaks }} </p>
+    {% endautoescape %}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block body-js %}
+<script src={% static "prism/js/prism.js" %}></script>
+<script>
+$(".main-text table").prev().css("margin-bottom", "5px")
+$(".main-text pre").prev().css("margin-bottom", "5px")
+$(".ref-number").tooltip()
+</script>
+{% endblock %}

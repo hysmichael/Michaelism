@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} Ideas {% endblock %}
+
+{% block css %}
+<link href={% static "css/ideas.css" %} rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <h3> Ideas. </h3>
+    <p> Blogs and Essays. </p>
+
+    <div>
+        {% for essay in essays %}
+            <div class="essay-brief restrained-width">
+              <h4> <a href={{ essay.object.get_absolute_url }} onmouseover="onHover(this);" onmouseout="onRelease(this);"> <i class="fa fa-circle-o"></i> &nbsp;  {{ essay.object.title}} </a>
+              </h4>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  function onHover(title) {
+    title.getElementsByClassName("fa")[0].className = "fa fa-circle";
+  }
+  function onRelease(title) {
+    title.getElementsByClassName("fa")[0].className = "fa fa-circle-o";
+  }
+  </script>
+
+{% endblock %}

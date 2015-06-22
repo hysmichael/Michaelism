@@ -1,0 +1,100 @@
+
+/* Title */
+.title h3 {
+    max-width: 600px;
+}
+
+/* Panel */
+.panel-default {
+    border-width: 0;
+    background: #f9f9f9;
+    margin: 30px 0;
+}
+
+.panel-body {
+    font-size: 15px;
+    line-height: 150%;
+    font-weight: 300;
+    color: #aaa;
+    border: none;
+}
+
+
+/* Main Text - Text */
+.main-text {
+    font-size: 16px;
+    line-height: 170%;
+    font-weight: 300;
+}
+
+.main-text p{
+    text-indent: 2em;
+    margin-bottom: 36px;
+}
+
+.main-text .tooltip-inner{
+    text-indent: 0 !important
+}
+
+
+/* Main Text - Image */
+.main-text .inline-image {
+    max-width: 100%;
+    width: 100%;
+    margin:0 auto;
+    display: block;
+}
+
+/* Main Text - Superscript */
+.main-text sup {
+    font-weight: 500;
+    color: #999;
+}
+
+/* Main Text - Auto Reference */
+.main-text .reference {
+    font-size: 14px;
+    color: #999;
+    line-height: 135%;  
+}
+
+.main-text .reference ol {
+    margin: 0 0 1.5em;
+    counter-reset: item;
+}
+
+.main-text .reference ol > li {
+    padding: 0 0 0 2em;
+    text-indent: -2em;
+    list-style-type: none;
+    counter-increment: item;
+}
+
+.main-text .reference ol > li:before {
+    display: inline-block;
+    width: 1em;
+    padding-right: 0.5em;
+    font-weight: bold;
+    font-family: Courier;
+    text-align: right;
+    content: counter(item) ".";
+}
+
+.main-text .reference .number {
+    display: inline;
+    font-weight: bold;
+    font-family: Courier;
+}
+
+/* Main Text - Decorations */
+.main-text hr {
+    border-color: #444;
+    width: 80px;
+}
+
+/* Main Text - Tables */
+.main-text table {
+    font-size: 14px;
+}
+
+

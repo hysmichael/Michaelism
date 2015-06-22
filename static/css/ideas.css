@@ -1,0 +1,19 @@
+
+.essay-brief {
+    margin: 15px 0;
+}
+
+.essay-brief .text {
+    color: #333;
+    font-size: 15px ;
+}
+
+
+a {
+    color: #AAAAC6;
+}
+
+a:focus, a:hover {
+    color: #333;
+    text-decoration: none;
+}

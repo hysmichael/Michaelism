@@ -1,0 +1,1616 @@
+[2015-05-13 08:19:18 +0000] [16492] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x7f83606c95f0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x7f83606c9320>
+  pre_fork: <function pre_fork at 0x7f83606c9488>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 1000
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 3
+  proc_name: None
+  sendfile: True
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x7f83606c91b8>
+  pre_exec: <function pre_exec at 0x7f83606c9b90>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x7f83606c9758>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x7f83606cf2a8>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x7f83606c9cf8>
+  post_request: <function post_request at 0x7f83606c9de8>
+  user: 1000
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x7f83606c98c0>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 4094
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x7f83606c9f50>
+  chdir: /home/ubuntu/django
+  paste: None
+  default_proc_name: michaelism.wsgi:application
+  errorlog: /home/ubuntu/django/gunicorn.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: udp://localhost:514
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x7f83606c9050>
+  worker_abort: <function worker_abort at 0x7f83606c9a28>
+  bind: ['127.0.0.1:8000']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x7f83606cf140>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2015-05-13 08:19:18 +0000] [16492] [INFO] Starting gunicorn 19.3.0
+[2015-05-13 08:19:18 +0000] [16492] [DEBUG] Arbiter booted
+[2015-05-13 08:19:18 +0000] [16492] [INFO] Listening at: http://127.0.0.1:8000 (16492)
+[2015-05-13 08:19:18 +0000] [16492] [INFO] Using worker: sync
+[2015-05-13 08:19:18 +0000] [16497] [INFO] Booting worker with pid: 16497
+[2015-05-13 08:19:18 +0000] [16500] [INFO] Booting worker with pid: 16500
+[2015-05-13 08:19:18 +0000] [16501] [INFO] Booting worker with pid: 16501
+[2015-05-13 08:19:18 +0000] [16492] [DEBUG] 3 workers
+[2015-05-13 01:19:18 +0000] [16497] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:19:18 +0000] [16497] [INFO] Worker exiting (pid: 16497)
+[2015-05-13 01:19:18 +0000] [16500] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:19:18 +0000] [16500] [INFO] Worker exiting (pid: 16500)
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 189, in run
+    super(Application, self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 201, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 297, in halt
+    self.stop()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 342, in stop
+    time.sleep(0.1)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 214, in handle_chld
+    self.reap_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 459, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2015-05-13 01:19:18 +0000] [16501] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:19:18 +0000] [16501] [INFO] Worker exiting (pid: 16501)
+[2015-05-13 08:20:28 +0000] [16528] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x7f101c1b65f0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x7f101c1b6320>
+  pre_fork: <function pre_fork at 0x7f101c1b6488>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 1000
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 3
+  proc_name: None
+  sendfile: True
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x7f101c1b61b8>
+  pre_exec: <function pre_exec at 0x7f101c1b6b90>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x7f101c1b6758>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x7f101c1bc2a8>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x7f101c1b6cf8>
+  post_request: <function post_request at 0x7f101c1b6de8>
+  user: 1000
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x7f101c1b68c0>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 4094
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x7f101c1b6f50>
+  chdir: /home/ubuntu/django
+  paste: None
+  default_proc_name: michaelism.wsgi:application
+  errorlog: /home/ubuntu/django/gunicorn.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: udp://localhost:514
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x7f101c1b6050>
+  worker_abort: <function worker_abort at 0x7f101c1b6a28>
+  bind: ['127.0.0.1:8000']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x7f101c1bc140>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2015-05-13 08:20:28 +0000] [16528] [INFO] Starting gunicorn 19.3.0
+[2015-05-13 08:20:28 +0000] [16528] [DEBUG] Arbiter booted
+[2015-05-13 08:20:28 +0000] [16528] [INFO] Listening at: http://127.0.0.1:8000 (16528)
+[2015-05-13 08:20:28 +0000] [16528] [INFO] Using worker: sync
+[2015-05-13 08:20:28 +0000] [16533] [INFO] Booting worker with pid: 16533
+[2015-05-13 08:20:29 +0000] [16536] [INFO] Booting worker with pid: 16536
+[2015-05-13 01:20:29 +0000] [16533] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:20:29 +0000] [16533] [INFO] Worker exiting (pid: 16533)
+[2015-05-13 08:20:29 +0000] [16538] [INFO] Booting worker with pid: 16538
+[2015-05-13 08:20:29 +0000] [16528] [DEBUG] 3 workers
+[2015-05-13 01:20:29 +0000] [16536] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:20:29 +0000] [16536] [INFO] Worker exiting (pid: 16536)
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 189, in run
+    super(Application, self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 201, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 297, in halt
+    self.stop()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 342, in stop
+    time.sleep(0.1)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 214, in handle_chld
+    self.reap_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 459, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2015-05-13 01:20:29 +0000] [16538] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:20:29 +0000] [16538] [INFO] Worker exiting (pid: 16538)
+[2015-05-13 08:21:22 +0000] [16574] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x7fd5a0b475f0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x7fd5a0b47320>
+  pre_fork: <function pre_fork at 0x7fd5a0b47488>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 1000
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 3
+  proc_name: None
+  sendfile: True
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x7fd5a0b471b8>
+  pre_exec: <function pre_exec at 0x7fd5a0b47b90>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x7fd5a0b47758>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x7fd5a0b4d2a8>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x7fd5a0b47cf8>
+  post_request: <function post_request at 0x7fd5a0b47de8>
+  user: 1000
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x7fd5a0b478c0>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 4094
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x7fd5a0b47f50>
+  chdir: /home/ubuntu/django
+  paste: None
+  default_proc_name: michaelism.wsgi:application
+  errorlog: /home/ubuntu/django/gunicorn.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: udp://localhost:514
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x7fd5a0b47050>
+  worker_abort: <function worker_abort at 0x7fd5a0b47a28>
+  bind: ['127.0.0.1:8000']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x7fd5a0b4d140>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2015-05-13 08:21:22 +0000] [16574] [INFO] Starting gunicorn 19.3.0
+[2015-05-13 08:21:22 +0000] [16574] [DEBUG] Arbiter booted
+[2015-05-13 08:21:22 +0000] [16574] [INFO] Listening at: http://127.0.0.1:8000 (16574)
+[2015-05-13 08:21:22 +0000] [16574] [INFO] Using worker: sync
+[2015-05-13 08:21:22 +0000] [16579] [INFO] Booting worker with pid: 16579
+[2015-05-13 08:21:22 +0000] [16582] [INFO] Booting worker with pid: 16582
+[2015-05-13 08:21:22 +0000] [16585] [INFO] Booting worker with pid: 16585
+[2015-05-13 01:21:22 +0000] [16579] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:21:22 +0000] [16579] [INFO] Worker exiting (pid: 16579)
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 189, in run
+    super(Application, self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 174, in run
+    self.manage_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 477, in manage_workers
+    self.spawn_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 541, in spawn_workers
+    time.sleep(0.1 * random.random())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 214, in handle_chld
+    self.reap_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 459, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2015-05-13 01:21:23 +0000] [16582] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:21:23 +0000] [16582] [INFO] Worker exiting (pid: 16582)
+[2015-05-13 01:21:23 +0000] [16585] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:21:23 +0000] [16585] [INFO] Worker exiting (pid: 16585)
+[2015-05-13 08:25:39 +0000] [16783] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x7f2c0ccc45f0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x7f2c0ccc4320>
+  pre_fork: <function pre_fork at 0x7f2c0ccc4488>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 1000
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 3
+  proc_name: None
+  sendfile: True
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x7f2c0ccc41b8>
+  pre_exec: <function pre_exec at 0x7f2c0ccc4b90>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x7f2c0ccc4758>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x7f2c0ccca2a8>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x7f2c0ccc4cf8>
+  post_request: <function post_request at 0x7f2c0ccc4de8>
+  user: 1000
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x7f2c0ccc48c0>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 4094
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x7f2c0ccc4f50>
+  chdir: /home/ubuntu/django
+  paste: None
+  default_proc_name: django.wsgi:application
+  errorlog: /home/ubuntu/django/gunicorn.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: udp://localhost:514
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x7f2c0ccc4050>
+  worker_abort: <function worker_abort at 0x7f2c0ccc4a28>
+  bind: ['127.0.0.1:8000']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x7f2c0ccca140>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2015-05-13 08:25:39 +0000] [16783] [INFO] Starting gunicorn 19.3.0
+[2015-05-13 08:25:39 +0000] [16783] [DEBUG] Arbiter booted
+[2015-05-13 08:25:39 +0000] [16783] [INFO] Listening at: http://127.0.0.1:8000 (16783)
+[2015-05-13 08:25:39 +0000] [16783] [INFO] Using worker: sync
+[2015-05-13 08:25:39 +0000] [16788] [INFO] Booting worker with pid: 16788
+[2015-05-13 08:25:39 +0000] [16788] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+ImportError: No module named wsgi
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+ImportError: No module named wsgi
+[2015-05-13 08:25:39 +0000] [16788] [INFO] Worker exiting (pid: 16788)
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 189, in run
+    super(Application, self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 174, in run
+    self.manage_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 477, in manage_workers
+    self.spawn_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 541, in spawn_workers
+    time.sleep(0.1 * random.random())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 214, in handle_chld
+    self.reap_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 459, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2015-05-13 08:26:09 +0000] [16794] [DEBUG] Current configuration:
+  proxy_protocol: False
+  worker_connections: 1000
+  statsd_host: None
+  max_requests_jitter: 0
+  post_fork: <function post_fork at 0x7f822328e5f0>
+  pythonpath: None
+  enable_stdio_inheritance: False
+  worker_class: sync
+  ssl_version: 3
+  suppress_ragged_eofs: True
+  syslog: False
+  syslog_facility: user
+  when_ready: <function when_ready at 0x7f822328e320>
+  pre_fork: <function pre_fork at 0x7f822328e488>
+  cert_reqs: 0
+  preload_app: False
+  keepalive: 2
+  accesslog: None
+  group: 1000
+  graceful_timeout: 30
+  do_handshake_on_connect: False
+  spew: False
+  workers: 3
+  proc_name: None
+  sendfile: True
+  pidfile: None
+  umask: 0
+  on_reload: <function on_reload at 0x7f822328e1b8>
+  pre_exec: <function pre_exec at 0x7f822328eb90>
+  worker_tmp_dir: None
+  post_worker_init: <function post_worker_init at 0x7f822328e758>
+  limit_request_fields: 100
+  on_exit: <function on_exit at 0x7f82232942a8>
+  config: None
+  secure_scheme_headers: {'X-FORWARDED-PROTOCOL': 'ssl', 'X-FORWARDED-PROTO': 'https', 'X-FORWARDED-SSL': 'on'}
+  proxy_allow_ips: ['127.0.0.1']
+  pre_request: <function pre_request at 0x7f822328ecf8>
+  post_request: <function post_request at 0x7f822328ede8>
+  user: 1000
+  forwarded_allow_ips: ['127.0.0.1']
+  worker_int: <function worker_int at 0x7f822328e8c0>
+  threads: 1
+  max_requests: 0
+  limit_request_line: 4094
+  access_log_format: %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"
+  certfile: None
+  worker_exit: <function worker_exit at 0x7f822328ef50>
+  chdir: /home/ubuntu/django
+  paste: None
+  default_proc_name: michaelism.wsgi:application
+  errorlog: /home/ubuntu/django/gunicorn.log
+  loglevel: debug
+  logconfig: None
+  syslog_addr: udp://localhost:514
+  syslog_prefix: None
+  daemon: False
+  ciphers: TLSv1
+  on_starting: <function on_starting at 0x7f822328e050>
+  worker_abort: <function worker_abort at 0x7f822328ea28>
+  bind: ['127.0.0.1:8000']
+  raw_env: []
+  reload: False
+  check_config: False
+  limit_request_field_size: 8190
+  nworkers_changed: <function nworkers_changed at 0x7f8223294140>
+  timeout: 30
+  ca_certs: None
+  django_settings: None
+  tmp_upload_dir: None
+  keyfile: None
+  backlog: 2048
+  logger_class: gunicorn.glogging.Logger
+  statsd_prefix: 
+[2015-05-13 08:26:09 +0000] [16794] [INFO] Starting gunicorn 19.3.0
+[2015-05-13 08:26:09 +0000] [16794] [DEBUG] Arbiter booted
+[2015-05-13 08:26:09 +0000] [16794] [INFO] Listening at: http://127.0.0.1:8000 (16794)
+[2015-05-13 08:26:09 +0000] [16794] [INFO] Using worker: sync
+[2015-05-13 08:26:09 +0000] [16799] [INFO] Booting worker with pid: 16799
+[2015-05-13 08:26:09 +0000] [16801] [INFO] Booting worker with pid: 16801
+[2015-05-13 08:26:09 +0000] [16794] [DEBUG] 3 workers
+[2015-05-13 08:26:09 +0000] [16800] [INFO] Booting worker with pid: 16800
+[2015-05-13 01:26:10 +0000] [16799] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:26:10 +0000] [16799] [INFO] Worker exiting (pid: 16799)
+[2015-05-13 01:26:10 +0000] [16801] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:26:10 +0000] [16801] [INFO] Worker exiting (pid: 16801)
+[2015-05-13 01:26:10 +0000] [16800] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 507, in spawn_worker
+    worker.init_process()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 118, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/util.py", line 355, in import_app
+    __import__(module)
+  File "/home/ubuntu/django/michaelism/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/core/wsgi.py", line 14, in get_wsgi_application
+    django.setup()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/__init__.py", line 18, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/registry.py", line 108, in populate
+    app_config.import_models(all_models)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/apps/config.py", line 198, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/contrib/auth/models.py", line 41, in <module>
+    class Permission(models.Model):
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 139, in __new__
+    new_class.add_to_class('_meta', Options(meta, **kwargs))
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/base.py", line 324, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/models/options.py", line 250, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/__init__.py", line 36, in __getattr__
+    return getattr(connections[DEFAULT_DB_ALIAS], item)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 240, in __getitem__
+    backend = load_backend(db['ENGINE'])
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 27, in <module>
+    raise ImproperlyConfigured("Error loading MySQLdb module: %s" % e)
+ImproperlyConfigured: Error loading MySQLdb module: No module named MySQLdb
+[2015-05-13 01:26:10 +0000] [16800] [INFO] Worker exiting (pid: 16800)
+Traceback (most recent call last):
+  File "/home/ubuntu/.virtualenvs/django/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 189, in run
+    super(Application, self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 201, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 297, in halt
+    self.stop()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 342, in stop
+    time.sleep(0.1)
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 214, in handle_chld
+    self.reap_workers()
+  File "/home/ubuntu/.virtualenvs/django/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 459, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>

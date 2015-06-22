@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %} Michaelism - Home {% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <h2 class="font-heavy">A New Personal Website Project</h2>
+      <p>Michael starts building a fully customizable and extensible website with Twitter Bootstrap and Django on Amazon EC2 cloud servers.</p>
+      <p>First content will be migrated from PortfolioBox and WordPress. But it takes time.</p>
+    </div>
+
+  </div> <!-- /container -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2> Progress Log </h2>
+        <ul>
+          
+          <li>
+            <h4> May 10, 2015 </h4>
+            <ul>
+              <li> Purchased the dedicated domain name <em>yanshuhong.com</em>. </li>
+              <li> Purchased Hatchling Plan at HostGator for web application hosting. </li>
+              <li> Set up Django as the server-side framework. (The power of Django definitely 
+                      exceeds the needs of a personal website, but who knows what this website will be evolved into.) </li>
+              <li> Created new repo on GitHub and its local clone. </li>
+              <li> Linked against Twitter Bootstrap to enhance user interface and front-end development. </li>
+              <li> Set up server-side environment and fCGIs to redirect url requrests to Django. </li>
+              <li> Posted the front page and the new personal website is acutally running!. </li>
+            </ul>
+          </li>
+
+          <li>
+            <h4> May 11, 2015 </h4>
+            <ul>
+              <li> Populated the navigation bar structure. Revised <em>base.html</em> to dynamically display the selected navbar item. </li>
+              <li> The second page <em>idea page</em> is up. It needs to be tested on the server on URL redirection. </li>
+              <li> Designed data models for idea page: Essay, Tag, EssayBundle, and Language. </li>
+              <li> Migrated 3 essays from original Wordpress. </li>
+              <li> Finished up basic functionalities for idea page to browse all available essays. Linked essays with similiar contents but different languages through EssayBundle. </li>
+              <li> Installed Google font and changed the base font to Oxygen. </li>
+            </ul>
+          </li>
+
+          <li>
+            <h4> May 12, 2015 </h4>
+            <ul>
+              <li> Set the maximum width of the text container of essay page. </li>
+              <li> Migrated server-side database from Sqlite to MySQL and resolved the admin OperationalError. </li>
+              <li> HostGator does not have GCC to install a dependency for MySQL. Decided to switch server. </li>
+              <li> Issued a termination for HostGator package and registered an account at Amazon AWS. </li>
+              <li> Launched a EC2 cloud server and configured environment for django depolyment. </li>
+              <li> Enabled UTF-8 support on MySQL database. </li>
+              <li> Migrated project onto AWS server at <em>ec2-52-24-225-153.us-west-2.compute.amazonaws.com</em>.</li>
+            </ul>
+          </li>
+
+          <li>
+            <h4> May 15, 2015 </h4>
+            <ul>
+              <li> Installed local MySQL database server. </li>
+              <li> Because a new domain name can not be transfered within 60 days from its initial purchase, I purchased another domain name <em>hongyanshu.com</em> on GoDaddy.com. </li>
+              <li> Associated an elastic IP to the EC2 instance and configured the domain DNS to resolute to the elastic IP. </li>
+              <li> Added all related IPs and hostnames to django setting to fix the Bad Request issue. </li>
+            </ul>
+          </li>
+
+          <li>
+            <h4> May 16, 2015 </h4>
+            <ul>
+              <li> Updated base font family to be the order: Oxygen, ヒラギノ角ゴ Pro W3, Osaka, メイリオ, ＭＳ Ｐゴシック, sans-serif</li>
+              <li> Integrated Font-Awesome into the project. </li>
+              <li> Added optional preface for blog posts. </li>
+              <li> Implemented a basic HTML render engine for essays. [IMG *= 'name' 'width'] inserts an image tag with automatic reference to the corresponding file in the static file folder. [REF *= 'reference'] inserts an ordered superscription and generates an auotomatic reference table at the end of the essay. </li>
+              <li> Added 6 essays from previous courseworks. </li>
+              <li> Remember to restart Apache server every time changes are pushed to the production. Otherwise, new changes will not be reflected. </li>
+              <li> Installed virtual environment and the lastest version of django locally. Previously the local django version is 1.7.1 while the production django version is 1.8.1. The version discrepancy causes the locally dumped data file can not be loaded by the production. The newer version removed the "name" field in contenttypes.contenttype while this field exists in the previous version. </li>
+            </ul>
+          </li>
+
+          <li>
+            <h4> May 30, 2015 </h4>
+            <ul>
+              <li> Registered S3 cloud CND on Amazon AWS. Configuration pending. </li>
+              <li> Installed jQuery and Prism (for code highlighting). </li>
+              <li> Uploaded new post UIView + MHLayout. Updated HTML render engine to support rendering code snippets. </li>
+            </ul>
+          </li>
+
+          <li>
+            <h4> May 31, 2015 </h4>
+            <ul>
+              <li> New design for Ideas front page. Every essay post includes title, post date, tags and an automatically extracted introduction from the essay body. </li>
+              <li> Now reference numbers in essay posts support hovering to view reference detail. </li> 
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="col-md-5">
+        <h2> Tasks </h2>
+          <li> Keep writing new essays. </li>
+          <li> Move static files to a CDN. </li>
+          <li> Start thinking about Projects session and its design schema. </li>
+        <ul>
+        
+        </ul>
+        <h2> About </h2>
+        <p> I like fiddling new things when I am free. Now a titular Stanford sophomore but an actual iOS enginner at StylePuzzle, I am exploring my life possibilities and differenct ways to let myself presented. </p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
