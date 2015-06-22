@@ -1,6 +1,6 @@
 
 .essay-brief {
-    margin: 15px 0;
+    margin-bottom: 15px;
 }
 
 .essay-brief .text {
@@ -8,12 +8,6 @@
     font-size: 15px ;
 }
 
-
-a {
-    color: #AAAAC6;
-}
-
-a:focus, a:hover {
-    color: #333;
-    text-decoration: none;
+h5 {
+    font-size: 16px;
 }

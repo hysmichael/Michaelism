@@ -13,11 +13,13 @@
     <h3> Ideas. </h3>
     <p> Blogs and Essays. </p>
 
+    <br>
+
     <div>
         {% for essay in essays %}
             <div class="essay-brief restrained-width">
-              <h4> <a href={{ essay.object.get_absolute_url }} onmouseover="onHover(this);" onmouseout="onRelease(this);"> <i class="fa fa-circle-o"></i> &nbsp;  {{ essay.object.title}} </a>
-              </h4>
+              <h5> <a href={{ essay.object.get_absolute_url }} onmouseover="onHover(this);" onmouseout="onRelease(this);"> <i class="fa fa-circle-o"></i> &nbsp;  {{ essay.object.title}} </a>
+              </h5>
             </div>
         {% endfor %}
     </div>

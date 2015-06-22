@@ -25,3 +25,14 @@ def ideas_single_essay(request, slug):
     return render(request, 'essay.html', data)
 
 
+def projects_front_page(request):  
+    return render(request, 'projects.html', {
+        'active_nav': 'projects', 
+    })
+
+def visions_front_page(request):  
+    return render(request, 'visions.html', {
+        'active_nav': 'visions', 
+    })
+
+

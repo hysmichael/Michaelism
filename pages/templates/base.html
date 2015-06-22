@@ -51,11 +51,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li {% if active_nav == 'ideas'%} class="active" {% endif %}><a href={% url 'ideas-front-page' %}>Ideas</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#visions">Visions</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#about">About</a></li>
+            <li {% if active_nav == 'projects'%} class="active" {% endif %}><a href={% url 'projects-front-page' %}>Projects</a></li>
+            <li {% if active_nav == 'visions'%} class="active" {% endif %}><a href={% url 'visions-front-page' %}>Visions</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -6,5 +6,7 @@ from .views import *
 urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home-page'),
     url(r'^ideas/$', 'pages.views.ideas_front_page', name='ideas-front-page'),
-    url(r'^ideas/(?P<slug>[^\.]+)/$', 'pages.views.ideas_single_essay', name='ideas-single-essay')
+    url(r'^ideas/(?P<slug>[^\.]+)/$', 'pages.views.ideas_single_essay', name='ideas-single-essay'),
+    url(r'^projects/$', 'pages.views.projects_front_page', name='projects-front-page'),
+    url(r'^visions/$', 'pages.views.visions_front_page', name='visions-front-page'),
 )
