@@ -1,9 +1,11 @@
 
-/*offset for navigation bar */
 body { 
+    /* offset for navigation bar */
     margin-top: 70px; 
+    /* margin at the page bottom */
     margin-bottom: 30px;
-    font-family: 'Oxygen', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    font-family: 'Oxygen', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 
+    'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 }
 
 .font-light {
@@ -23,10 +25,7 @@ body {
     max-width: 800px;
 }
 
-
-.body {
-}
-
+/* navbar configurations */
 .navbar {
     background-color: white;
     border: none;
@@ -37,11 +36,13 @@ body {
 }
 
 @media(min-width: 768px) {
+    /* align navbar items with navbar brand */
     .navbar-nav>li>a {
         padding-top: 16px;
     }   
 }
 
+/* active navbar item style */
 .navbar-default .navbar-nav>.active>a,
 .navbar-default .navbar-nav>.active>a:focus,
 .navbar-default .navbar-nav>.active>a:hover {
@@ -50,8 +51,9 @@ body {
     color: black;
 }
 
+/* hyperlink style */
 a {
-    color: #AAAAC6;
+    color: #AAAAC6; /* dark blue */
 }
 
 a:focus, a:hover {
@@ -59,6 +61,7 @@ a:focus, a:hover {
     text-decoration: none;
 }
 
+/* empty placeholder style */
 .empty-placeholder {
     color: #777;
 }
