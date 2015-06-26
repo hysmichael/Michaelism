@@ -31,7 +31,8 @@
 
 .main-text p{
     text-indent: 2em;
-    margin-bottom: 36px;
+    margin-top: 27px;
+    margin-bottom: 27px;
 }
 
 .main-text .tooltip-inner{

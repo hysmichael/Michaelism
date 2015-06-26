@@ -2,7 +2,7 @@ Layout in UIView is becoming more of a headache after Apple introduced iPhone 6 
 
 Apple introduced its first version of Auto Layout in Xcode 4 built in the interface builder. It was a nightmare for vanguard developers at that time. Though Auto Layout was getting more low-key as Apple provided more tools for us to set and visualize constraints, it still remains as an somehow advanced topic for new iOS developers. And if we prefer building the interface totally by code without touching the interface builder, adding long-winded constraints code for views are quite tiresome and, honestly, not intuitive.
 
-So as a side project, I implemented a relatively lightweight but intuitive tool for UIView layout. The idea is quite similar to the Logo Program (“turtle graphics”) I fiddled during elementary school, where you have a tiny turtle as a cursor and you input instructions to let the turtle turn, move, stroke a line and etc. Sure, this is how UIBezierPath path works as well, and also the drawing code for Core Graphics. I just borrowed the same idea and reincarnated our turtle for layout purposes.
+So as a side project, I implemented a relatively lightweight but intuitive tool for UIView layout. The idea is quite similar to the Logo Program ("turtle graphics") I fiddled during elementary school, where you have a tiny turtle as a cursor and you input instructions to let the turtle turn, move, stroke a line and etc. Sure, this is how UIBezierPath path works as well, and also the drawing code for Core Graphics. I just borrowed the same idea and reincarnated our turtle for layout purposes.
 
 <hr>
 
@@ -17,9 +17,10 @@ Before we move on actual layout methods, let’s explore some basic concepts par
 <strong>MHMarginEdge</strong> refers to the subset of margins that should be taken into consideration during one operation. It has 4 possible values MHMarginEdgeNone, MHMarginEdgeAll, MHMarginEdgeX, MHMarginEdgeY, where, shortcut value 0 stands for none edges and shortcut value 1 stands for all edges.
 
 <strong>MHLayoutPosition</strong> refers to a position on a rectangle. It has 9 possible values, including all 4 vertices, 4 middle points of edges, and the center. They are numbered in the way a number pad is arranged: 1 refers to the top-left vertex; 2 refers to the middle point of the upper edge, …, and 9 refers to the bottom-right vertex.  
-[IMG *= positions.png 150px]
+[IMG *= positions.png 180px]
 
 The last one <strong>MHLayoutLength</strong> is the essence of the layout engine. It allows you to specify a length, whether it is a width or a height or a moving distance, to be relative to the container dimension. If the container is the root view, this means  MHLayoutLength allows you to layout views based on different screen size. It’s definition is as the following:
+[HTML BEGIN*
 <table class="table">
 <thead>
   <tr>
@@ -50,12 +51,14 @@ The last one <strong>MHLayoutLength</strong> is the essence of the layout engine
   </tr>
 </tbody>
 </table>
+*END]
 
 Note that MHMarginEdge applies when the value is relative to the container, either its dimension or its boarder. We can set the MHMarginEdge to  specify the boarders of the container when calculating the value of MHLayoutLength. If we apply none edges, we treat the actual boarders as the boarders used in calculation. If we apply all edges, we treat the inner boards (delineated by margin width) as the boarders used in calculation. We can also turn on margin only on x-direction or y-direction.
 
 These properties essentially bring intuition into layout. Instead of calculating the actual frame of any subview, we only need to think the layout process as a sequence of instructions of moving the cursor and placing the subviews. First, let’s learn how to move the cursors.
 
 Moving can be achieved by <code class="language-objectivec">[MHLayout simpleMoveX:(CGFloat) x Y:(CGFloat) y]</code> or <code class="language-objectivec">[MHLayout moveByArguments:(NSDictionary *) args]</code>. The first function is simply moving the cursor by absolute value x and y. Say, calling simple move for x=3, y=5 from (0, 5) yields (3, 10). The second function is rarely used but very powerful. It takes a argument dictionary specifying the moving distance in MHLayoutLength.  
+[HTML BEGIN*
 <table class="table">
 <thead>
   <tr>
@@ -65,19 +68,20 @@ Moving can be achieved by <code class="language-objectivec">[MHLayout simpleMove
 </thead>
 <tbody>
   <tr>
-    <th scope="row">“x” or “-x”</th>
-    <td>The distance on the x dimension in MHLayoutLength. “x” denotes a rightward movement and “-x” denotes a leftward movement. Note: setting a zero value will be translated to absolute length 1 point according to the definition of MHLayoutLength, do not set value for either “x” or “-x” to prevent movement on x dimension.</td>
+    <th scope="row">"x" or "-x"</th>
+    <td>The distance on the x dimension in MHLayoutLength. "x" denotes a rightward movement and "-x" denotes a leftward movement. Note: setting a zero value will be translated to absolute length 1 point according to the definition of MHLayoutLength, do not set value for either "x" or "-x" to prevent movement on x dimension.</td>
   </tr>
   <tr>
-    <th scope="row">“y” or “-y”</th>
-    <td>The distance on the y dimension in MHLayoutLength. “y” denotes a downward movement and “-y” denotes a upward movement. Do not set value for either “y” or “-y” to prevent movement on y dimension.</td>
+    <th scope="row">"y" or "-y"</th>
+    <td>The distance on the y dimension in MHLayoutLength. "y" denotes a downward movement and "-y" denotes a upward movement. Do not set value for either "y" or "-y" to prevent movement on y dimension.</td>
   </tr> 
   <tr>
-    <th scope="row">“margin”</th>
+    <th scope="row">"margin"</th>
     <td>Specify the MHMarginEdge value for calculating  MHLayoutLength. If this value is not set, 0 (none edges) is used as default.</td>
   </tr>
 </tbody>
 </table>
+*END]
 
 We can also directly move the cursor in respect to the container and other views, 
 [CODE *= objectivec block BEGIN*

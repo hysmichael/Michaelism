@@ -20,6 +20,9 @@ def render_html_body(essay):
     # scan [CODE] tag and generate a properly formatted code snippet
     text = re.sub(r'\[\s*CODE\s*\*=\s*([\w]+)\s*([\w]*)\s*BEGIN\*(.+?)\*END\s*\]', code_snippet_render, text, flags=re.DOTALL)
 
+    # scan [HTML] tag and escape the whole section
+    text = re.sub(r'\[\s*HTML\s*BEGIN\*(.+?)\*END\s*\]', html_escape_render, text, flags=re.DOTALL)
+
     return text
 
 def image_tag_render(slug):
@@ -61,7 +64,7 @@ def generate_reference_list(reflist):
 def code_snippet_render(matchobj):
     language = matchobj.group(1)
     arg = matchobj.group(2)
-    snippet = matchobj.group(3).split('\r\n')
+    snippet = matchobj.group(3).split('\n')
     while (snippet[0] == u''):
         del snippet[0]
     while (snippet[-1] == u''):
@@ -70,7 +73,13 @@ def code_snippet_render(matchobj):
     if arg == '':
         output = '\r\n'.join(snippet)
     elif arg == 'block':
-        output = '<pre>%s</pre>' % ('\r\n'.join(snippet))
+        output = '<pre>%s</pre>' % ('\n'.join(snippet))
     return output
+
+def html_escape_render(matchobj):
+    html_lines = matchobj.group(1).split('\n')
+    html = ''.join(html_lines)
+    return html
+
 
 
