@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from django.contrib import admin
 from django.forms import Textarea, ModelForm
 from django.db import models
@@ -23,4 +25,3 @@ admin.site.register(Essay, EssayAdmin)
 admin.site.register(Tag)
 admin.site.register(EssayBundle)
 admin.site.register(Language)
-

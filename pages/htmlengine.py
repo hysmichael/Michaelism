@@ -10,15 +10,15 @@ def render_html_body(essay):
         text = essay_content.read()
 
     # scan [IMG] tag and replace with proper image url
-    text = re.sub('\[\s*IMG\s*\*=\s*([\w-]+.(jpg|png))\s*([\w%]*)\s*\]', image_tag_render(essay.slug), text)
+    text = re.sub(r'\[\s*IMG\s*\*=\s*([\w-]+.(jpg|png))\s*([\w%]*)\s*\]', image_tag_render(essay.slug), text)
     
     # scan [REF] tag and replace with proper numbering
     reflist = []
-    text = re.sub('\[\s*REF\s*\*=\s*([^\]]+)\s*\]', reference_tag_render(reflist), text)
+    text = re.sub(r'\[\s*REF\s*\*=\s*([^\]]+)\s*\]', reference_tag_render(reflist), text)
     text += generate_reference_list(reflist)
 
     # scan [CODE] tag and generate a properly formatted code snippet
-    text = re.sub('\[ *CODE *\*= *([\w]+) *([\w]*) *BEGIN\*(.+?)\*END *\]', code_snippet_render, text, flags=re.DOTALL)
+    text = re.sub(r'\[\s*CODE\s*\*=\s*([\w]+)\s*([\w]*)\s*BEGIN\*(.+?)\*END\s*\]', code_snippet_render, text, flags=re.DOTALL)
 
     return text
 
@@ -26,6 +26,8 @@ def image_tag_render(slug):
     def path_replace(matchobj):
         filename = matchobj.group(1)
         width = matchobj.group(3)
+        if not width:       # default value for unspecified width
+            width = '100%'
         path = 'blog-image/%s/%s' % (slug, filename)
         url  = static(path)
         return '<img class="inline-image" src="%s" style="max-width:%s">' % (url, width)

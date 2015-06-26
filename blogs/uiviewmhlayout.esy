@@ -20,14 +20,64 @@ Before we move on actual layout methods, let’s explore some basic concepts par
 [IMG *= positions.png 150px]
 
 The last one <strong>MHLayoutLength</strong> is the essence of the layout engine. It allows you to specify a length, whether it is a width or a height or a moving distance, to be relative to the container dimension. If the container is the root view, this means  MHLayoutLength allows you to layout views based on different screen size. It’s definition is as the following:
-<table class="table"><thead>  <tr>  <th>Parameter</th>  <th>Definition</th>  </tr></thead><tbody>  <tr>    <th scope="row">x > 1</th>    <td>An absolute length. For example, 60 means a length of 60 points.</td>  </tr>  <tr>    <th scope="row">0 < x ≤ 1</th>    <td>A percentage of the container dimension on the layout direction. For example, if the length 0.4 is used for the width of a subview, the width of the subview will be 40% the width of the container. <em>MHMarginEdge applies</em>.</td>  </tr>  <tr>    <th scope="row">x = 0</th>    <td>Absolute length 1 point. A length of 0 has no meaning so the value 0 is used to compensate for the absolute length 1 point because MHLayoutLength 1.0 is redefined to represent 100% of the container dimension.</td>  </tr>  <tr>    <th scope="row">-1 ≤ x < 0</th>    <td>A percentage of the distance from the cursor to the container boarder on the layout direction. For example, if the cursor is at point (150, 200) and the width of the container is 300, a length 0.4 used for the width of a subview will be 40% the x distance from the cursor to the container boarder, in this case 40%(300 - 150) = 60 points. <em>MHMarginEdge applies</em>.</td>  </tr>  <tr>    <th scope="row">x < -1</th>    <td>The distance from the cursor to the container boarder on the layout direction minus the absolute value. Taken the previous example, from point (150, 200), a length -40 used for the width of a subview will yield an absolute length of (300 - 150) - 40 = 110 points. <em>MHMarginEdge applies</em>.</td>  </tr>  </tbody></table>
+<table class="table">
+<thead>
+  <tr>
+    <th>Parameter</th>
+    <th>Definition</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <th scope="row">x > 1</th>
+    <td>An absolute length. For example, 60 means a length of 60 points.</td>
+  </tr>  
+  <tr>
+    <th scope="row">0 < x ≤ 1</th>
+    <td>A percentage of the container dimension on the layout direction. For example, if the length 0.4 is used for the width of a subview, the width of the subview will be 40% the width of the container. <em>MHMarginEdge applies</em>.</td>
+  </tr>
+  <tr>
+    <th scope="row">x = 0</th>
+    <td>Absolute length 1 point. A length of 0 has no meaning so the value 0 is used to compensate for the absolute length 1 point because MHLayoutLength 1.0 is redefined to represent 100% of the container dimension.</td>
+  </tr>
+  <tr>
+    <th scope="row">-1 ≤ x < 0</th>
+    <td>A percentage of the distance from the cursor to the container boarder on the layout direction. For example, if the cursor is at point (150, 200) and the width of the container is 300, a length 0.4 used for the width of a subview will be 40% the x distance from the cursor to the container boarder, in this case 40%(300 - 150) = 60 points. <em>MHMarginEdge applies</em>.</td>
+  </tr>
+  <tr>
+    <th scope="row">x < -1</th>
+    <td>The distance from the cursor to the container boarder on the layout direction minus the absolute value. Taken the previous example, from point (150, 200), a length -40 used for the width of a subview will yield an absolute length of (300 - 150) - 40 = 110 points. <em>MHMarginEdge applies</em>.</td>
+  </tr>
+</tbody>
+</table>
 
 Note that MHMarginEdge applies when the value is relative to the container, either its dimension or its boarder. We can set the MHMarginEdge to  specify the boarders of the container when calculating the value of MHLayoutLength. If we apply none edges, we treat the actual boarders as the boarders used in calculation. If we apply all edges, we treat the inner boards (delineated by margin width) as the boarders used in calculation. We can also turn on margin only on x-direction or y-direction.
 
 These properties essentially bring intuition into layout. Instead of calculating the actual frame of any subview, we only need to think the layout process as a sequence of instructions of moving the cursor and placing the subviews. First, let’s learn how to move the cursors.
 
 Moving can be achieved by <code class="language-objectivec">[MHLayout simpleMoveX:(CGFloat) x Y:(CGFloat) y]</code> or <code class="language-objectivec">[MHLayout moveByArguments:(NSDictionary *) args]</code>. The first function is simply moving the cursor by absolute value x and y. Say, calling simple move for x=3, y=5 from (0, 5) yields (3, 10). The second function is rarely used but very powerful. It takes a argument dictionary specifying the moving distance in MHLayoutLength.  
-<table class="table"><thead>  <tr>  <th>Key (NSString)</th>  <th>Value (NSNumber)</th>  </tr></thead><tbody>  <tr>    <th scope="row">“x” or “-x”</th>    <td>The distance on the x dimension in MHLayoutLength. “x” denotes a rightward movement and “-x” denotes a leftward movement. Note: setting a zero value will be translated to absolute length 1 point according to the definition of MHLayoutLength, do not set value for either “x” or “-x” to prevent movement on x dimension.</td>  </tr>  <tr>    <th scope="row">“y” or “-y”</th>    <td>The distance on the y dimension in MHLayoutLength. “y” denotes a downward movement and “-y” denotes a upward movement. Do not set value for either “y” or “-y” to prevent movement on y dimension.</td>  </tr>  <tr>    <th scope="row">“margin”</th>    <td>Specify the MHMarginEdge value for calculating  MHLayoutLength. If this value is not set, 0 (none edges) is used as default.</td> </tbody></table>
+<table class="table">
+<thead>
+  <tr>
+    <th>Key (NSString)</th>
+    <th>Value (NSNumber)</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <th scope="row">“x” or “-x”</th>
+    <td>The distance on the x dimension in MHLayoutLength. “x” denotes a rightward movement and “-x” denotes a leftward movement. Note: setting a zero value will be translated to absolute length 1 point according to the definition of MHLayoutLength, do not set value for either “x” or “-x” to prevent movement on x dimension.</td>
+  </tr>
+  <tr>
+    <th scope="row">“y” or “-y”</th>
+    <td>The distance on the y dimension in MHLayoutLength. “y” denotes a downward movement and “-y” denotes a upward movement. Do not set value for either “y” or “-y” to prevent movement on y dimension.</td>
+  </tr> 
+  <tr>
+    <th scope="row">“margin”</th>
+    <td>Specify the MHMarginEdge value for calculating  MHLayoutLength. If this value is not set, 0 (none edges) is used as default.</td>
+  </tr>
+</tbody>
+</table>
 
 We can also directly move the cursor in respect to the container and other views, 
 [CODE *= objectivec block BEGIN*
