@@ -5,7 +5,6 @@ class Essay(models.Model):
     title       = models.CharField(max_length=100, unique=True)
     slug        = models.SlugField(max_length=100, unique=True)
     preface     = models.TextField(null=True, blank = True)
-    body        = models.TextField()
     created_at  = models.DateField(db_index=True, auto_now_add=True)
     posted_at   = models.DateField(db_index=True, null=True, blank=True)
     tags        = models.ManyToManyField('Tag', related_name='essays', blank=True)

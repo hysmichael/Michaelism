@@ -18,7 +18,7 @@
     <div>
         {% for essay in essays %}
             <div class="essay-brief restrained-width">
-              <h5> <a href={{ essay.object.get_absolute_url }} onmouseover="onHover(this);" onmouseout="onRelease(this);"> <i class="fa fa-circle-o"></i> &nbsp;  {{ essay.object.title}} </a>
+              <h5> <a href={{ essay.get_absolute_url }} onmouseover="onHover(this);" onmouseout="onRelease(this);"> <i class="fa fa-circle-o"></i> &nbsp;  {{ essay.title}} </a>
               </h5>
             </div>
         {% endfor %}

@@ -1,43 +1,13 @@
 from django.templatetags.static import static
-from django.template.defaultfilters import linebreaks
+from django.conf import settings
+
+import codecs
 import re
 
-def render_essay_introduction(essay, limit):
-    value = linebreaks(essay.body)
-    paragraphes = re.findall('<p>.+?</p>', value)
-    count = 0
-    if (essay.language.name == 'Chinese'):  limit = int(limit * 0.5)
-    if (essay.language.name == 'Japanese'): limit = int(limit * 0.5)
-    countMax = limit
-    outputStr = ''
-    for index, text in enumerate(paragraphes):
-        if (count + len(text) <= countMax):
-            outputStr += text
-            count += len(text)
-        else:
-            break
-    if (index < len(paragraphes)):
-        # truncate by words #
-        truncateText = paragraphes[index][:countMax - count].rsplit(' ', 1)[0] + ' ...'
-        
-        # complete opened html tags #
-        tags = re.findall('</*(.+?)>', truncateText)
-        stack = []
-        for tag in tags:
-            if len(stack) > 0 and stack[-1] == tag:
-                stack.pop()
-            else:
-                stack.append(tag)
-        for tag in reversed(stack):
-            truncateText += '</%s>' % tag
-        
-        # append trucated text #
-        outputStr += truncateText
-    return outputStr
-
-
 def render_html_body(essay):
-    text = essay.body
+    filename = '%s/blogs/%s.esy' % (settings.BASE_DIR, essay.slug) 
+    with codecs.open(filename, "r", "utf-8") as essay_content:
+        text = essay_content.read()
 
     # scan [IMG] tag and replace with proper image url
     text = re.sub('\[\s*IMG\s*\*=\s*([\w-]+.(jpg|png))\s*([\w%]*)\s*\]', image_tag_render(essay.slug), text)
@@ -85,7 +55,6 @@ def generate_reference_list(reflist):
         output += '<li>%s</li>' % ref
     output += '</ol></div>'
     return output
-
 
 def code_snippet_render(matchobj):
     language = matchobj.group(1)

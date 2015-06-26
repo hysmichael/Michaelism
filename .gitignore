@@ -6,4 +6,6 @@ lib/
 pip-selfcheck.json
 *.pyc
 *.pem
+local/
+
 

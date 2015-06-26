@@ -1,0 +1,117 @@
+Layout in UIView is becoming more of a headache after Apple introduced iPhone 6 and iPhone 6 Plus, by which two more different screen sizes need to be supported. In fact, there two devices both support a special display mode called Display Zoom where the screen resolution is slightly below the normal display to enlarge the display content. So we have to take care of these possibilities as well.
+
+Apple introduced its first version of Auto Layout in Xcode 4 built in the interface builder. It was a nightmare for vanguard developers at that time. Though Auto Layout was getting more low-key as Apple provided more tools for us to set and visualize constraints, it still remains as an somehow advanced topic for new iOS developers. And if we prefer building the interface totally by code without touching the interface builder, adding long-winded constraints code for views are quite tiresome and, honestly, not intuitive.
+
+So as a side project, I implemented a relatively lightweight but intuitive tool for UIView layout. The idea is quite similar to the Logo Program (“turtle graphics”) I fiddled during elementary school, where you have a tiny turtle as a cursor and you input instructions to let the turtle turn, move, stroke a line and etc. Sure, this is how UIBezierPath path works as well, and also the drawing code for Core Graphics. I just borrowed the same idea and reincarnated our turtle for layout purposes.
+
+<hr>
+
+The basic idea here is, a layout context consists of a <strong>layout container</strong> and a <strong>cursor point</strong>. We move around the cursor point in the container and place views in respect to the cursor point. A layout container is usually the superview of all views we are going to layout. If so, the layout engine can correctly set the frame of views in the coordinates of the layout container, i.e., the superview. There are more advanced usages that we’ll come back later when we talk about Subcontainer and Virtual Subframe.
+
+Every time we set a view as the layout container by calling <code class="language-objectivec">[view setAsLayoutContainer]</code> on the view or the class method <code class="language-objectivec">[MHLayout setLayoutContainer:(UIView *) view]</code> on MHLayout the umbrella class (as you'll see throughout the tutorial, operations that target a specific view can usually be called on that view, while operations regarding the layout engine should be called on MHLayout). Once the layout container is set, the coordinates of the layout context align with the coordinates of the view whose subviews we are going to layout. The cursor is initialized to (0, 0) by convention. 
+
+Before we move on actual layout methods, let’s explore some basic concepts particular to MHLayout. Every layout container has optional margins on all sides. The default margin width is 10 points for all directions, and we can change margins on left/right or up/down by calling
+<code class="language-objectivec">[MHLayout setXMargin:(CGFloat) value]</code> or <code class="language-objectivec">[MHLayout setYMargin:(CGFloat) value]</code> respectively.
+[IMG *= layoutmargins.png 200px]
+
+<strong>MHMarginEdge</strong> refers to the subset of margins that should be taken into consideration during one operation. It has 4 possible values MHMarginEdgeNone, MHMarginEdgeAll, MHMarginEdgeX, MHMarginEdgeY, where, shortcut value 0 stands for none edges and shortcut value 1 stands for all edges.
+
+<strong>MHLayoutPosition</strong> refers to a position on a rectangle. It has 9 possible values, including all 4 vertices, 4 middle points of edges, and the center. They are numbered in the way a number pad is arranged: 1 refers to the top-left vertex; 2 refers to the middle point of the upper edge, …, and 9 refers to the bottom-right vertex.  
+[IMG *= positions.png 150px]
+
+The last one <strong>MHLayoutLength</strong> is the essence of the layout engine. It allows you to specify a length, whether it is a width or a height or a moving distance, to be relative to the container dimension. If the container is the root view, this means  MHLayoutLength allows you to layout views based on different screen size. It’s definition is as the following:
+<table class="table"><thead>  <tr>  <th>Parameter</th>  <th>Definition</th>  </tr></thead><tbody>  <tr>    <th scope="row">x > 1</th>    <td>An absolute length. For example, 60 means a length of 60 points.</td>  </tr>  <tr>    <th scope="row">0 < x ≤ 1</th>    <td>A percentage of the container dimension on the layout direction. For example, if the length 0.4 is used for the width of a subview, the width of the subview will be 40% the width of the container. <em>MHMarginEdge applies</em>.</td>  </tr>  <tr>    <th scope="row">x = 0</th>    <td>Absolute length 1 point. A length of 0 has no meaning so the value 0 is used to compensate for the absolute length 1 point because MHLayoutLength 1.0 is redefined to represent 100% of the container dimension.</td>  </tr>  <tr>    <th scope="row">-1 ≤ x < 0</th>    <td>A percentage of the distance from the cursor to the container boarder on the layout direction. For example, if the cursor is at point (150, 200) and the width of the container is 300, a length 0.4 used for the width of a subview will be 40% the x distance from the cursor to the container boarder, in this case 40%(300 - 150) = 60 points. <em>MHMarginEdge applies</em>.</td>  </tr>  <tr>    <th scope="row">x < -1</th>    <td>The distance from the cursor to the container boarder on the layout direction minus the absolute value. Taken the previous example, from point (150, 200), a length -40 used for the width of a subview will yield an absolute length of (300 - 150) - 40 = 110 points. <em>MHMarginEdge applies</em>.</td>  </tr>  </tbody></table>
+
+Note that MHMarginEdge applies when the value is relative to the container, either its dimension or its boarder. We can set the MHMarginEdge to  specify the boarders of the container when calculating the value of MHLayoutLength. If we apply none edges, we treat the actual boarders as the boarders used in calculation. If we apply all edges, we treat the inner boards (delineated by margin width) as the boarders used in calculation. We can also turn on margin only on x-direction or y-direction.
+
+These properties essentially bring intuition into layout. Instead of calculating the actual frame of any subview, we only need to think the layout process as a sequence of instructions of moving the cursor and placing the subviews. First, let’s learn how to move the cursors.
+
+Moving can be achieved by <code class="language-objectivec">[MHLayout simpleMoveX:(CGFloat) x Y:(CGFloat) y]</code> or <code class="language-objectivec">[MHLayout moveByArguments:(NSDictionary *) args]</code>. The first function is simply moving the cursor by absolute value x and y. Say, calling simple move for x=3, y=5 from (0, 5) yields (3, 10). The second function is rarely used but very powerful. It takes a argument dictionary specifying the moving distance in MHLayoutLength.  
+<table class="table"><thead>  <tr>  <th>Key (NSString)</th>  <th>Value (NSNumber)</th>  </tr></thead><tbody>  <tr>    <th scope="row">“x” or “-x”</th>    <td>The distance on the x dimension in MHLayoutLength. “x” denotes a rightward movement and “-x” denotes a leftward movement. Note: setting a zero value will be translated to absolute length 1 point according to the definition of MHLayoutLength, do not set value for either “x” or “-x” to prevent movement on x dimension.</td>  </tr>  <tr>    <th scope="row">“y” or “-y”</th>    <td>The distance on the y dimension in MHLayoutLength. “y” denotes a downward movement and “-y” denotes a upward movement. Do not set value for either “y” or “-y” to prevent movement on y dimension.</td>  </tr>  <tr>    <th scope="row">“margin”</th>    <td>Specify the MHMarginEdge value for calculating  MHLayoutLength. If this value is not set, 0 (none edges) is used as default.</td> </tbody></table>
+
+We can also directly move the cursor in respect to the container and other views, 
+[CODE *= objectivec block BEGIN*
+/* move the cursor to a position of the view we just placed */
+[MHLayout moveToPosition:(MHLayoutPosition) position];
+
+/* move the cursor to a position of the container */ 
+/* note that the boarders used in calculation is affected by the margin edges we specify */
+[MHLayout moveToContainerPosition:(MHLayoutPosition) position 
+                           margin:(MHMarginEdge) edges];
+
+/* move the cursor to a position of a frame (or the frame of a view) */
+[view moveToPosition:(MHLayoutPosition) position];
+[MHLayout moveToFrame:(CGRect) frame atPosition:(MHLayoutPosition) position];
+*END]
+
+Note that all move records are persisted by an internal stack. So one move call can be undid by calling <code class="language-objectivec">[MHLayout revert]</code>. You can undo move calls arbitrary times until the stack is empty.
+
+After moving, we finally come to the climax, actually laying out the views. We first use the moving methods to move the cursor to our desired point and then place a view by aligning its anchor point to the cursor the dynamically calculating its width and height using MHLayoutLength. Three main functions are,
+[CODE *= objectivec block BEGIN*
+/* layout with width and height as parameters */
+[view layoutWidth:(MHLayoutLength) w_para 
+           height:(MHLayoutLength) h_para
+           anchor:(MHLayoutPosition) position 
+           margin:(MHMarginEdge) edges];
+
+/* layout with width as parameter and height is in ratio to width */
+[view layoutRatio:(CGFloat) ratio 
+            width:(MHLayoutLength) w_para 
+           anchor:(MHLayoutPosition) position 
+           margin:(MHMarginEdge) edges];
+
+/* layout with height as parameter and width is in ratio to height */
+[view layoutRatio:(CGFloat) ratio 
+           height:(MHLayoutLength) h_para 
+           anchor:(MHLayoutPosition) position 
+           margin:(MHMarginEdge) edges];
+*END]
+
+These three functions in conjunction with MHLayoutLength, MHLayoutPosition and MHMarginEdge, can cover most layout needs. You can either specify both a view’s width and height, or only one of them and a ratio value. Note the ratio is always the unspecified dimension to the specified dimension. For example, if you use the second function, in which you specify ratio and width, the ratio is from height to the calculated absolute width value.
+
+Further note that not all pairs of MHLayoutLength and MHLayoutPosition makes sense. Especially when MHLayoutLength is given a negative value (by definition, this is related to the distance from the cursor point to the container boarder on the layout direction), some values of MHLayoutPosition cause undefined behavior. For example, a negative width parameter with the anchor point as the middle point of the upper edge. Because the layout engine can not figure out the layout direction as leftward or rightward, the resulted absolute value is not defined. Be careful not to specify such value pairs.
+
+<hr>
+
+These techniques are quite sufficient for non-crazy layouts. Now let's explore some examples.
+
+The first example is going to layout two views in the contentView with margins of 10 points around and a same spacing in between. The height of both views will be 50% of that of the contentView excluding the margins,
+[CODE *= objectivec block BEGIN*
+[self.contentView setAsLayoutContainer];
+[MHLayout moveToContainerPosition:2 margin:1];
+[MHLayout simpleMoveX:-5.0 Y:0.0];
+[self.view1 layoutWidth:-1.0 height:0.5 anchor:3 margin:1];
+[MHLayout revert];
+[MHLayout simpleMoveX:5.0 Y:0.0];
+[self.view2 layoutWidth:-1.0 height:0.5 anchor:1 margin:1];
+*END]
+[IMG *= example1.png 250px]
+
+The second example is more complicated. The canvas consists of a header view, a body view and a footer view, where there are no margins except 10-points side-margins for the body view. The height of the header view is a constant 100 points, so for the footer view a constant 50 points. The height of the body view is dynamic based on the height of the canvas (screen). Moreover, there are two subviews in the header view. Their top and bottom margins are 10 points while left, right and inter-view margins are 20 points. The left view is a square and the right view should fill whatever space there is remaining. The following code snippet shows how to satisfy these layout requirements using MHLayout, 
+[CODE *= objectivec block BEGIN*
+[self.contentView setAsLayoutContainer];
+
+/* layout view1 and its subviews */
+[self.view1 layoutWidth:1.0 height:100.0 anchor:1 margin:0];
+[MHLayout pushLayoutSubcontainer:self.view1];
+[MHLayout setXMargin:20.0];
+[MHLayout setYMargin:10.0];
+[MHLayout moveToContainerPosition:1 margin:1];
+[self.view4 layoutRatio:1.0 height:1.0 anchor:1 margin:1];
+[MHLayout moveToPosition:3];
+[MHLayout simpleMoveX:20.0 Y:0.0];
+[self.view5 layoutWidth:-1.0 height:1.0 anchor:1 margin:1];
+[MHLayout popLayoutSubcontainer];
+
+/* Layout the remaining views */
+[MHLayout moveToPosition:8];
+[MHLayout setXMargin:20.0];
+[self.view2 layoutWidth:1.0 height:-50.0 anchor:2 margin:MHMarginEdgeX];
+[MHLayout moveToPosition:8];
+[self.view3 layoutWidth:1.0 height:-1.0 anchor:2 margin:0];
+*END]
+[IMG *= example2.png 250px]
+
+Note that the same functionality can be achieved without using <code class="language-objectivec">[MHLayout pushLayoutSubcontainer:(UIView *) view]</code> and <code class="language-objectivec">[MHLayout popLayoutSubcontainer]</code>. We can just layout view 1, 2, and 3 first and then set view 1 as the layout container and further layout its subviews. However, these two functions can provide us a better flow of the layout code as we can proceed to layout a view’s subviews before laying out its sibling views. Because the layout container stack preserves the state of every layout manger instance, when a subcontainer is popped, the layout engine will be resumed to the exact state (cursor and redo stack) when the subcontainer is pushed. 
+
+More examples and introduction of advanced functions will be updated soon. The source code of this project is shared on <a href="https://github.com/hysmichael/MHKit">GitHub</a>, as a submodule of my iOS tool kit, MHKit.

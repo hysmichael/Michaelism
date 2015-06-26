@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 
 from .models import *
-from .htmlengine import render_html_body, render_essay_introduction
+from .htmlengine import render_html_body
 
 def ideas_front_page(request):  
-    essays = [{'object':e, 'intro':render_essay_introduction(e, 300)} for e in Essay.objects.order_by('-posted_at').all()]
+    essays = Essay.objects.order_by('-posted_at').all()
     return render(request, 'ideas.html', {
         'active_nav': 'ideas', 
         'essays': essays,

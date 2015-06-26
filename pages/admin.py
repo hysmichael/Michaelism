@@ -9,14 +9,14 @@ class EssayAdminForm(ModelForm):
         model = Essay
         exclude = ['created_at']
         widgets = {
-            'preface':  Textarea(attrs={'rows':4, 'cols':80}),
-            'body':     Textarea(attrs={'rows':30, 'cols':120}),
+            'preface':  Textarea(attrs={'rows':10, 'cols':80}),
         }
 
 class EssayAdmin(admin.ModelAdmin):
     form = EssayAdminForm
     list_display = ['title', 'posted_at', 'all_tags', 'language', ]
     prepopulated_fields = {'slug': ('title',)}
+    filter_horizontal = ('tags', )
 
 
 admin.site.register(Essay, EssayAdmin)
