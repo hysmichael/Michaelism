@@ -166,6 +166,13 @@ The second example is more complicated. The canvas consists of a header view, a 
 *END]
 [IMG *= example2.png 250px]
 
-Note that the same functionality can be achieved without using <code class="language-objectivec">[MHLayout pushLayoutSubcontainer:(UIView *) view]</code> and <code class="language-objectivec">[MHLayout popLayoutSubcontainer]</code>. We can just layout view 1, 2, and 3 first and then set view 1 as the layout container and further layout its subviews. However, these two functions can provide us a better flow of the layout code as we can proceed to layout a view’s subviews before laying out its sibling views. Because the layout container stack preserves the state of every layout manger instance, when a subcontainer is popped, the layout engine will be resumed to the exact state (cursor and redo stack) when the subcontainer is pushed. 
+Note that the same functionality can be achieved without using <code class="language-objectivec">[MHLayout pushLayoutSubcontainer:(UIView *) view]</code> and <code class="language-objectivec">[MHLayout popLayoutSubcontainer]</code>. We can just layout view 1, 2, and 3 first and then set view 1 as the layout container and further layout its subviews. However, these two functions can provide us a better flow of the layout code as we can proceed to layout a view’s subviews before laying out its sibling views. Because the layout container stack preserves the state of every layout manger instance, when a subcontainer is popped, the layout engine will be resumed to the exact state (cursor and redo stack) when the subcontainer is popped.
 
-More examples and introduction of advanced functions will be updated soon. The source code of this project is shared on <a href="https://github.com/hysmichael/MHKit">GitHub</a>, as a submodule of my iOS tool kit, MHKit.
+<hr>
+
+The source code of this project is available on <a href="https://github.com/hysmichael/MHKit">GitHub</a>, as a submodule of my iOS tool kit, MHKit. 
+
+<br>
+<b> Advanced Topic: Virtual Subframe </b>
+
+In most situations, it is sufficient to equate our layout container with the actual parent view of the view that is going to be laid out. In other words, MHLayout does all the calculations based on the dimensions of the parent view and outputs points or frame rectangles in the coordinates system of the parent view. But sometimes, we might want to do all the math based on one "virtual" container view (maybe not an UIView instance at all) but output the correct positions in the coordinates system of the actual parent view. 
