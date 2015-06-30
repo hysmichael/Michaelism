@@ -16,12 +16,12 @@ class EssayAdminForm(ModelForm):
 
 class EssayAdmin(admin.ModelAdmin):
     form = EssayAdminForm
-    list_display = ['title', 'posted_at', 'all_tags', 'language', ]
+    list_display = ['title', 'posted_at', 'language', 'category', ]
     prepopulated_fields = {'slug': ('title',)}
-    filter_horizontal = ('tags', )
 
 
 admin.site.register(Essay, EssayAdmin)
-admin.site.register(Tag)
+admin.site.register(Category)
 admin.site.register(EssayBundle)
 admin.site.register(Language)
+

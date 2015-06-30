@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import permalink
+from colorful.fields import RGBColorField
 
 class Essay(models.Model):
     title       = models.CharField(max_length=100, unique=True)
@@ -7,7 +8,7 @@ class Essay(models.Model):
     preface     = models.TextField(null=True, blank = True)
     created_at  = models.DateField(db_index=True, auto_now_add=True)
     posted_at   = models.DateField(db_index=True, null=True, blank=True)
-    tags        = models.ManyToManyField('Tag', related_name='essays', blank=True)
+    category    = models.ForeignKey('Category', related_name='essays', null=True, blank=True)
     bundle      = models.ForeignKey('EssayBundle', related_name='essays', null=True, blank=True)
     language    = models.ForeignKey('Language', related_name='essays')
 
@@ -18,15 +19,10 @@ class Essay(models.Model):
     def get_absolute_url(self):
         return ('ideas-single-essay', None, { 'slug': self.slug })
 
-    def all_tags(self):
-        string = ''
-        if not self.tags.exists():
-            return u'(None)'
-        return ', '.join(['%s' % tag.name for tag in self.tags.all()])
 
-
-class Tag(models.Model):
-    name        = models.CharField(max_length=100, db_index=True)
+class Category(models.Model):
+    name    = models.CharField(max_length=100, db_index=True)
+    color   = RGBColorField()
 
     def __unicode__(self):
         return '%s' % self.name
@@ -52,4 +48,5 @@ class Language(models.Model):
         if self.name == self.localized_name:
             return self.name
         return '%s (%s)' % (self.name, self.localized_name)
+
 

@@ -9,29 +9,35 @@
 
 {% block body %}
 
-  <div class="container">
-    <h3> Ideas. </h3>
-    <p> Blogs and Essays. </p>
+<div class="container">
+  <h3> Ideas. </h3>
+  <p> Blogs and Essays. </p>
 
-    <br>
+  <br>
 
-    <div>
-        {% for essay in essays %}
-            <div class="essay-brief restrained-width">
-              <h5> <a href={{ essay.get_absolute_url }} onmouseover="onHover(this);" onmouseout="onRelease(this);"> <i class="fa fa-circle-o"></i> &nbsp;  {{ essay.title}} </a>
-              </h5>
+  <div class="restrained-width">
+      {% for year, essays in essays_by_year.items reversed %}
+      <div class="year-container">
+          <div class="year-title avenir"> {{ year }} </div>
+          {% for essay in essays %}
+            <div class="essay-brief">
+              {% if essay.category %}
+                <div class="category" style="color:{{ essay.category.color }};"> {{ essay.category.name }} &nbsp; <i class="fa fa-circle"></i> </div>
+              {% endif %}
+              <div class="title"> <a href={{ essay.get_absolute_url }}> {{ essay.title }} </a> </div>
+              <div class="time avenir"> <i class="fa fa-clock-o"></i> {{ essay.posted_at }} </div> 
+              <div class="language"> <i class="fa fa-globe"></i> {{ essay.language.localized_name }} </div>
             </div>
-        {% endfor %}
-    </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
   </div>
-
-  <script type="text/javascript">
-  function onHover(title) {
-    title.getElementsByClassName("fa")[0].className = "fa fa-circle";
-  }
-  function onRelease(title) {
-    title.getElementsByClassName("fa")[0].className = "fa fa-circle-o";
-  }
-  </script>
+</div>
 
 {% endblock %}
+
+
+{% block body-js %}
+
+{% endblock %}
+

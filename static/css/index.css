@@ -3,5 +3,19 @@
 }
 
 .main img {
-    max-width: 11em;
+    max-width: 400px;
+    border-radius: 20px;
+    border-bottom: 2px solid #E1E1EB;
+}
+
+.main .info {
+    margin-left: 10px;
+}
+
+.main .info .gray-out {
+    color: #999999;
+}
+
+.main .info p {
+    margin-bottom: 3px;
 }

@@ -5,9 +5,18 @@ from .htmlengine import render_html_body
 
 def ideas_front_page(request):  
     essays = Essay.objects.order_by('-posted_at').all()
+    essays_by_year = {}
+    current_year = None
+    for essay in essays:
+        if essay.posted_at.year == current_year:
+            essays_by_year[current_year].append(essay)
+        else:
+            current_year = essay.posted_at.year
+            essays_by_year[current_year] = [essay]
+
     return render(request, 'ideas.html', {
         'active_nav': 'ideas', 
-        'essays': essays,
+        'essays_by_year': essays_by_year,
     })
     
 def ideas_single_essay(request, slug):
