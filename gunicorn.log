@@ -1615,3 +1615,7 @@ Traceback (most recent call last):
     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
 gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
 ./start_gnicorn.sh: line 16: exec: gunicorn: not found
+./start_gnicorn.sh: line 16: exec: gunicorn: not found
+./start_gnicorn.sh: line 16: exec: gunicorn: not found
+./start_gnicorn.sh: line 16: exec: gunicorn: not found
+./start_gnicorn.sh: line 16: exec: gunicorn: not found
