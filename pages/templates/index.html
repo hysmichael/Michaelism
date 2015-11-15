@@ -9,19 +9,72 @@
 
 {% block body %}
 
+<!-- Header -->
+<header id="header" class="alt">
+  <h1><a href={% url "home-page" %}><em>Michael Hong</em> &nbsp; Michaelism</a></h1>
+</header>
 
-<div class="container">
-  <div class="main">
-    <img src={% static "image/profile_image.jpg" %}>
-    <div class="info">
-        <h2> Yanshu Hong. </h2>
-        <p class="gray-out"> Thinking, Connecting, Doing. </p>
-        <br>
-        <p> Stanford University, Class of 2017. </p>
-        <p> Computer Science, Philosohpy. </p>
-        <p> yanshu.hong.michael@gmail.com </p>
+<!-- Banner -->
+<section id="banner">
+    <div class="inner">
+        <div class="logo"><span class="icon fa-lightbulb-o"></span></div>
+        <h2>Michael Hong</h2>
+        <p>Thinking. Connecting. <em>Then</em> doing.</p>
     </div>
-  </div>
-</div>
+</section>
+
+<!-- Contents -->
+<section id="wrapper">
+
+    <!-- Self Introduction -->
+        <section id="one" class="wrapper spotlight style1">
+            <div class="inner">
+                <img class="image" src="{% static 'image/profile_image.jpg' %}" />
+                <div class="content">
+                    <h2 class="major">Tried-To-Be-Brief Intro</h2>
+                    <p> My name is Michael (Yanshu Hong), a "sophisticated" junior at Stanford, where there are only two seasons, everyone's favorite summer and the are-u-kidding-me-this-is-damn-California winter. I am a fu-cky person, which means I major in Philosophy (which is fuzzy) and Computer Science (which is tech-y). Yes I am FoB, I am from Shanghai and I always try my best to avoid saying I'm from China because then people ask "where in China??". </p>
+                    <p> I favor changes, the unknown, being fashion-savvy. I love arts, random books (and articles from Wait-but-why), philosophizing, writing, "in-real" Japanese culture (no anime and weeaboo pls), negitoro-don, free chats about intellectual or funny stuff and finally doing unique things with lovely people. I prefer both logical methodology of thinking and sympathetic feeling towards the world (so Myers Briggs is quite paradoxical to me). </p>
+                    <p> I spent my freshman year summer at Tokyo studying Japanese, half of my sophomore year in San Francisco working as full-stack engineer at a fashion e-commerce startup called <em>Style Puzzle</em>. Now I'm back to school, reading Arthur Schopenhauer's pessimism but at the same time feeling super optimistic towards the future. </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="two" class="wrapper alt spotlight style4">
+            <div class="inner">
+                <img class="image" src="{% static 'image/profile_image2.jpg' %}" />
+                <div class="content">
+                    <h2 class="major">My own enigma</h2>
+                    <p> Every person is an enigma. No exception for me. I am as multifaceted as you can imagine and I've dreamed of pursuing any profession as there can exist. </p>
+                    <p> Once, I wanted to be an engineer, because I printed my first line of <em>Hello World</em> in 4th grade and kept enjoying coding and the empowerment it accompanies along my school years. Once, I wanted to be a philosopher, because I was always the top-one thinker during  daily conversations in high school and college. I enjoy developing my own theory of things and put everything into the harmony of logic. Once, I wanted to be a comedian, because I realized I am that person who always makes people laugh, in a smart way or a stupid way. I want my epitaph write "a playboy of language". Once, I wanted to be an artist, because I practiced pencil sketching for 7 years and the well-developed sense of aesthetics manifests itself throughout my life. I think art is as expressive as prose or code is. </p>
+                </div>
+            </div>
+        </section>
+
+    <!-- All Other Articles -->
+        <section id="four" class="wrapper style1">
+            <div class="inner">
+                <h2 class="major">Blogs and Essays</h2>
+                <p> This is a truly miscellaneous collection of my blogs and essays. A caveat up front, an article can be equally possible to be in English, Chinese or Japanese. Apologize if I don't really have time to offer a translated version. </p>
+                <section class="features">
+                    {% for essay in essays %}
+                    <article>
+                        <h3 class="major"> {{ essay.title }} </h3>
+
+                        {% if essay.category %}
+                        <h4 class="category" style="color:{{ essay.category.color }};">  <i class="fa fa-circle"></i> &nbsp;  {{ essay.category.name }}  </h4>
+                        {% endif %}
+
+                        <p> {{ essay.abstract }} </p>
+                        <a href="{{ essay.get_absolute_url }}" class="special">Read on</a>
+                    </article>
+                    {% endfor %}
+
+
+                    
+                </section>
+            </div>
+        </section>
+
+</section>
 
 {% endblock %}

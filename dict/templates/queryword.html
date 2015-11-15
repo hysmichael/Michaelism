@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %} Dictionary {% endblock %}
+
+{% block css %}
+<link href={% static "css/dict.css" %} rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <div class="restrained-width">
+
+    <div id="custom-search-input">
+        <div class="input-group col-md-12">
+            <input id="search-text-box" type="text" class="search-query form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button id="query-button" class="btn btn-danger" type="button" onclick="submitQuery()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <h3 id="entry-name"> {{ word.entry }} <small> {{ word.difficulty_index }} </small> </h3>
+    {% for type_set in word.definitions %}
+    <div class="def-group">
+        <h4><span class="label label-{{ type_set.1 }}"> {{ type_set.0 }} </span></h4>
+        <ul class="def-list">
+        {% for def in type_set.2 %}
+            <li> <div class="def-number"> {{ def.number }} </div> 
+             {{ def.content }} </li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block body-js %}
+
+<script type="text/javascript">
+    $("#search-text-box").keyup(function(event){
+        if(event.keyCode == 13){
+            $("#query-button").click();
+        }
+    });
+
+    submitQuery = function() {
+        query_word = $("#search-text-box").val();
+        if (query_word != "") {
+            reloadWithQueryStringVars({'query': query_word});
+        }
+    }
+</script>
+
+{% endblock %}

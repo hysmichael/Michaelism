@@ -1,24 +1,10 @@
 
-/* Title */
-.title h3 {
-    max-width: 600px;
+.preface {
+    font-family: 'Oxygen',  sans-serif !important;
+    font-size: 15px !important;
+    color: #ddd;
 }
 
-
-/* Panel */
-.panel-default {
-    border-width: 0;
-    background: #f9f9f9;
-    margin: 30px 0;
-}
-
-.panel-body {
-    font-size: 15px;
-    line-height: 150%;
-    font-weight: 300;
-    color: #aaa;
-    border: none;
-}
 
 
 /* Main Text - Text */
@@ -26,7 +12,7 @@
     font-size: 16px;
     line-height: 170%;
     font-weight: 300;
-    letter-spacing: .5px;
+    letter-spacing: .05em;
 }
 
 .main-text p{
@@ -35,9 +21,6 @@
     margin-bottom: 27px;
 }
 
-.main-text .tooltip-inner{
-    text-indent: 0 !important
-}
 
 
 /* Main Text - Image */
@@ -52,15 +35,16 @@
 /* Main Text - Superscript */
 .main-text sup {
     font-weight: 500;
-    color: #999;
+    color: #bbb;
 }
 
 
 /* Main Text - Auto Reference */
 .main-text .reference {
     font-size: 14px;
-    color: #999;
+    color: #bbb;
     line-height: 135%;  
+    margin-top: 4em;
 }
 
 .main-text .reference ol {
@@ -94,8 +78,9 @@
 
 /* Main Text - Decorations */
 .main-text hr {
-    border-color: #444;
+    border-color: #ddd;
     width: 80px;
+    margin: 2em auto;
 }
 
 

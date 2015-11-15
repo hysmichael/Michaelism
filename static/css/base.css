@@ -1,11 +1,8 @@
 
 body { 
-    /* offset for navigation bar */
-    margin-top: 70px; 
-    /* margin at the page bottom */
-    margin-bottom: 30px;
     font-family: 'Oxygen', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 
     'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+    font-size: 12pt;
 }
 
 .font-light {
@@ -19,53 +16,4 @@ body {
 .font-heavy {
     font-weight: 700;
 }
-
-/* Restraints */
-.restrained-width {
-    max-width: 800px;
-}
-
-/* navbar configurations */
-.navbar {
-    background-color: white;
-    border: none;
-}
-
-.navbar-brand {
-    color: black !important;
-}
-
-@media(min-width: 768px) {
-    /* align navbar items with navbar brand */
-    .navbar-nav>li>a {
-        padding-top: 16px;
-    }   
-}
-
-/* active navbar item style */
-.navbar-default .navbar-nav>.active>a,
-.navbar-default .navbar-nav>.active>a:focus,
-.navbar-default .navbar-nav>.active>a:hover {
-    background-color: transparent;
-    font-weight: 700;
-    color: black;
-}
-
-/* hyperlink style */
-a {
-    color: #63739D; /* dark blue */
-}
-
-a:focus, a:hover {
-    color: #333;
-    text-decoration: none;
-}
-
-/* empty placeholder style */
-.empty-placeholder {
-    color: #777;
-}
-
-
-
 

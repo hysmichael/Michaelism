@@ -40,7 +40,7 @@ def reference_tag_render(reflist):
     def number_replace(matchobj):
         refname = matchobj.group(1)
         reflist.append(refname)
-        return '<a class="ref-number" data-toggle="tooltip" title="%s"><sup>%d</sup></a>' % (refname, len(reflist))
+        return '<a class="ref-number"><sup>%d</sup></a>' % (len(reflist))
     return number_replace
 
 def generate_reference_list(reflist):
@@ -52,7 +52,7 @@ def generate_reference_list(reflist):
         ref = reflist[i]
         if ref not in refkey:
             refkey[ref] = i
-    output = '<div class="reference"><h4>References</h4><ol>'
+    output = '<div class="reference"><h2>References</h2><ol>'
     for i in range(0, len(reflist)):
         ref = reflist[i]
         if refkey[ref] != i:
@@ -69,11 +69,16 @@ def code_snippet_render(matchobj):
         del snippet[0]
     while (snippet[-1] == u''):
         del snippet[-1]
-    snippet = map(lambda line: '<code class="language-%s">%s</code>' % (language, line), snippet)
+    def line_converter(line):
+        if line:
+            return '<code class="language-%s">%s</code>' % (language, line)
+        else:
+            return '\n'
+    snippet = map(line_converter, snippet)
     if arg == '':
-        output = '\r\n'.join(snippet)
+        output = ''.join(snippet)
     elif arg == 'block':
-        output = '<pre>%s</pre>' % ('\n'.join(snippet))
+        output = '<pre>%s</pre>' % (''.join(snippet))
     return output
 
 def html_escape_render(matchobj):

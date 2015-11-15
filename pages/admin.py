@@ -11,6 +11,7 @@ class EssayAdminForm(ModelForm):
         model = Essay
         exclude = ['created_at']
         widgets = {
+            'abstract':  Textarea(attrs={'rows':10, 'cols':80}),
             'preface':  Textarea(attrs={'rows':10, 'cols':80}),
         }
 
