@@ -8,10 +8,10 @@ So as a side project, I implemented a relatively lightweight but intuitive tool 
 
 The basic idea here is, a layout context consists of a <strong>layout container</strong> and a <strong>cursor point</strong>. We move around the cursor point in the container and place views in respect to the cursor point. A layout container is usually the superview of all views we are going to layout. If so, the layout engine can correctly set the frame of views in the coordinates of the layout container, i.e., the superview. There are more advanced usages that we’ll come back later when we talk about Subcontainer and Virtual Subframe.
 
-Every time we set a view as the layout container by calling <code class="language-objectivec">[view setAsLayoutContainer]</code> on the view or the class method <code class="language-objectivec">[MHLayout setLayoutContainer:(UIView *) view]</code> on MHLayout the umbrella class (as you'll see throughout the tutorial, operations that target a specific view can usually be called on that view, while operations regarding the layout engine should be called on MHLayout). Once the layout container is set, the coordinates of the layout context align with the coordinates of the view whose subviews we are going to layout. The cursor is initialized to (0, 0) by convention. 
+Every time we set a view as the layout container by calling <code class="language-objectivec">[view setAsLayoutContainer]</code> on the view or the class method <code class="language-objectivec">[MHLayout setLayoutContainer:]</code> on MHLayout the umbrella class (as you'll see throughout the tutorial, operations that target a specific view can usually be called on that view, while operations regarding the layout engine should be called on MHLayout). Once the layout container is set, the coordinates of the layout context align with the coordinates of the view whose subviews we are going to layout. The cursor is initialized to (0, 0) by convention. 
 
 Before we move on actual layout methods, let’s explore some basic concepts particular to MHLayout. Every layout container has optional margins on all sides. The default margin width is 10 points for all directions, and we can change margins on left/right or up/down by calling
-<code class="language-objectivec">[MHLayout setXMargin:(CGFloat) value]</code> or <code class="language-objectivec">[MHLayout setYMargin:(CGFloat) value]</code> respectively.
+<code class="language-objectivec">[MHLayout setXMargin:]</code> or <code class="language-objectivec">[MHLayout setYMargin:]</code> respectively.
 [IMG *= layoutmargins.png 200px]
 
 <strong>MHMarginEdge</strong> refers to the subset of margins that should be taken into consideration during one operation. It has 4 possible values MHMarginEdgeNone, MHMarginEdgeAll, MHMarginEdgeX, MHMarginEdgeY, where, shortcut value 0 stands for none edges and shortcut value 1 stands for all edges.
@@ -57,7 +57,7 @@ Note that MHMarginEdge applies when the value is relative to the container, eith
 
 These properties essentially bring intuition into layout. Instead of calculating the actual frame of any subview, we only need to think the layout process as a sequence of instructions of moving the cursor and placing the subviews. First, let’s learn how to move the cursors.
 
-Moving can be achieved by <code class="language-objectivec">[MHLayout simpleMoveX:(CGFloat) x Y:(CGFloat) y]</code> or <code class="language-objectivec">[MHLayout moveByArguments:(NSDictionary *) args]</code>. The first function is simply moving the cursor by absolute value x and y. Say, calling simple move for x=3, y=5 from (0, 5) yields (3, 10). The second function is rarely used but very powerful. It takes a argument dictionary specifying the moving distance in MHLayoutLength.  
+Moving can be achieved by <code class="language-objectivec">[MHLayout simpleMoveX: Y:]</code> or <code class="language-objectivec">[MHLayout moveByArguments:]</code>. The first function is simply moving the cursor by absolute value x and y. Say, calling simple move for x=3, y=5 from (0, 5) yields (3, 10). The second function is rarely used but very powerful. It takes a argument dictionary specifying the moving distance in MHLayoutLength.  
 [HTML BEGIN*
 <table class="table">
 <thead>
@@ -166,7 +166,7 @@ The second example is more complicated. The canvas consists of a header view, a 
 *END]
 [IMG *= example2.png 250px]
 
-Note that the same functionality can be achieved without using <code class="language-objectivec">[MHLayout pushLayoutSubcontainer:(UIView *) view]</code> and <code class="language-objectivec">[MHLayout popLayoutSubcontainer]</code>. We can just layout view 1, 2, and 3 first and then set view 1 as the layout container and further layout its subviews. However, these two functions can provide us a better flow of the layout code as we can proceed to layout a view’s subviews before laying out its sibling views. Because the layout container stack preserves the state of every layout manger instance, when a subcontainer is popped, the layout engine will be resumed to the exact state (cursor and redo stack) when the subcontainer is popped.
+Note that the same functionality can be achieved without using <code class="language-objectivec">[MHLayout pushLayoutSubcontainer:]</code> and <code class="language-objectivec">[MHLayout popLayoutSubcontainer]</code>. We can just layout view 1, 2, and 3 first and then set view 1 as the layout container and further layout its subviews. However, these two functions can provide us a better flow of the layout code as we can proceed to layout a view’s subviews before laying out its sibling views. Because the layout container stack preserves the state of every layout manger instance, when a subcontainer is popped, the layout engine will be resumed to the exact state (cursor and redo stack) when the subcontainer is popped.
 
 <br>
 
