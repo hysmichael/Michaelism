@@ -27,9 +27,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
 	'hongyanshu.com',
-	'52.25.77.20',
+	'52.89.110.142',
 	'172.31.21.175',
-	'ec2-52-25-77-20.us-west-2.compute.amazonaws.com', 
+	'ec2-52-89-110-142.us-west-2.compute.amazonaws.com', 
 ]
 
 # Application definition

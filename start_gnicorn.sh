@@ -10,7 +10,7 @@ ADDRESS=127.0.0.1:8000
 
 cd $APPDIR
 
-# source ~/.bashrc
+source ~/.bashrc
 # workon $APPNAME
 
 exec gunicorn $APPNAME.wsgi:application \
