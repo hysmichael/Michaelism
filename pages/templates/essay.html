@@ -29,9 +29,12 @@
               {% endfor %}
           </p>
         {% endif %}
+
+        {% autoescape off %}
           {% if essay.preface %}
            <p class="preface"> {{ essay.preface }} </p>
           {% endif %}
+        {% endautoescape %}
       </div>
     </header>
 
