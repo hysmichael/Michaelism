@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+  <head>
+
+    <!-- Basic Configurations -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={% static "favicon.png"%} />
+
+    <!-- Page Information -->
+    <title> Next </title>
+    <meta name="author" content="Michael Yanshu Hong">
+
+    <!-- CSS Files -->
+      <!-- Font Awesome core CSS -->
+      <link href={% static "css/font-awesome.min.css" %} rel="stylesheet">
+      <!-- Google Font CSS -->
+      <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Cinzel+Decorative:900|PT+Sans:400italic' rel='stylesheet' type='text/css'>
+
+      <!-- Additional CSS -->
+      <link href={% static "css/base.css" %} rel="stylesheet">
+      <link href={% static "css/next.css" %} rel="stylesheet">
+
+    <style>
+      body {
+          background-image: url("{% static 'image/bg_2.jpg' %}");
+          background-color: black;
+          background-size: cover;
+      }
+    </style>
+
+  </head>
+
+  <body>
+  
+  <h1>Next</h1>
+  <p class="subtitle">{{ username | capfirst }}'s Minimalist Bucket List</p>
+
+  <div id="new-entry-div">
+    <i class="fa fa-plus"></i> <input id="new-entry-input" type="text" name="entry-content">
+  </div>
+
+
+
+  <div class="list" id="list-I">
+    <h3>Short Term</h3>
+    <ul>
+    {% for entry in list_I %}
+      <li>
+        <input type="checkbox" id="toggle-I-{{ forloop.counter }}" data-id="{{ entry.pk }}" onchange="toggleCheckbox(this, 1)" hidden/> 
+        <label class="pure-toggle" for="toggle-I-{{ forloop.counter }}">
+          <i class="fa fa-circle-o fa-2x"></i><span>{{ entry.content }}</span>
+        </label>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+
+  <div class="list" id="list-II">
+    <h3>Long Term</h3>
+    <ul>
+    {% for entry in list_II %}
+      <li>
+        <input type="checkbox" id="toggle-II-{{ forloop.counter }}" data-id="{{ entry.pk }}" onchange="toggleCheckbox(this, 2)" hidden/>
+        <label class="pure-toggle" for="toggle-II-{{ forloop.counter }}">
+          <i class="fa fa-circle-o fa-2x"></i><span>{{ entry.content }}</span>
+        </label>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+
+
+  <p class='instruction' id='ins-top'>Press 1 or Enter to add new entry to Short Term list. </p>
+  <p class='instruction'>Press 2 to add new entry to Long Term list.</p>
+
+  <!-- Scripts -->
+    <!-- Skil and Jquery -->
+      <script src={% static "js/jquery.min.js" %}></script>
+
+    <script type="text/javascript">
+
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+
+function sendRequestToServer(url, dict, needsReload) {
+    xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    var data = JSON.stringify(dict);
+    if (needsReload) {
+      xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4) {
+            window.location.reload(true); 
+          }
+      }
+    }
+    xhr.send(data);
+}
+
+
+function toggleCheckbox(element, list_id) {  
+    entry_id = element.getAttribute('data-id');
+    status = element.checked;
+    sendRequestToServer("{% url 'modify-entry' username %}", 
+      {"entry_id":entry_id, "status":status},
+      false)
+ }
+
+var list_id = 1;
+
+$("#new-entry-input").keyup(function(event) {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        content = $(this).val();
+        if (content) {
+        sendRequestToServer("{% url 'add-entry' username %}", 
+          {"content":content, "list_id":list_id},
+          true)
+        } else { 
+          var shake= 3;
+          var vibrate = function(){
+              $("#new-entry-div").stop(true,false)
+              .css({position: 'relative', 
+              left: Math.round(Math.random() * shake) - ((shake + 1) / 2) +'px', 
+              top: Math.round(Math.random() * shake) - ((shake + 1) / 2) +'px'
+              });
+          }
+          vibrateIndex = setInterval(vibrate, 10);
+          setTimeout(function() {
+            clearInterval(vibrateIndex);
+          }, 200)
+        }
+    }
+    if (event.keyCode == 27) {
+      $("#new-entry-div").css('display','none');
+    } 
+});
+
+$(document).keypress(function(event) { 
+  if (event.charCode == 49 || event.charCode == 50 || event.keyCode == 13) {
+    if (event.charCode == 49 || event.keyCode == 13) {
+      list_id = 1;
+    } else {
+      list_id = 2;
+    }
+  $("#new-entry-div").css('display','block');
+  setTimeout(function() {
+    $("#new-entry-div input").focus();
+  }, 300);
+  }
+});
+
+  </script>
+
+
+  </body>
+</html>

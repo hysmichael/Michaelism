@@ -1,0 +1,154 @@
+html, body {
+  text-align: center;
+  /*background-color: #41ADA5;*/
+  font-size: 1em;
+  color: #fff;
+}
+
+
+h1 {
+  font-size: 3.0em;
+  margin: 1.5em 0 .2em;
+  font-family: 'Cinzel Decorative', cursive;
+}
+
+.subtitle {
+  max-width: 80%;
+  margin: .5em auto;
+  line-height: 1.5em;
+  padding-bottom: 3em;
+  font-family: 'PT Sans', serif;
+  color: #eee;
+}
+
+.instruction {
+  color: #ccc;
+  max-width: 80%;
+  margin: 0 auto;
+  font-size: 13px;
+  font-family: 'PT Sans', serif;
+}
+
+#ins-top {
+  margin-top: 40px;
+}
+
+#new-entry-div {
+  background-color: #fff;
+  width: 350px;
+  height: 41px;
+  margin: 0 auto;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+  color: #aaa;
+  display: none;
+  -webkit-animation: display-none-transition 0.3s;
+  animation: display-none-transition 0.3s;
+  font-family: 'Oxygen', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+@-webkit-keyframes display-none-transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#new-entry-div i {
+  padding-right: 3px;
+}
+
+
+@media screen and (min-width: 760px) {
+  #new-entry-div {
+    width: 600px;
+  }
+}
+
+#new-entry-div input {
+  width: 93%;
+  border: none;
+  padding: 10px 0;
+  font-size: 13pt;
+  color: #888;
+  display: inline-block;
+}
+
+input:focus{
+    outline: 0;
+}
+
+.list {
+  background-color: #fff;
+  width: 350px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.list h3 {
+  color: #fff;
+  margin: 1em 0 0 0;
+  padding: 0.8em 0;
+  font-weight: 200;
+  font-weight: bold;
+}
+
+#list-I h3 {
+  background-color: #FA82C8;
+}
+
+#list-II h3 {
+  background-color: #829EFA;
+}
+
+ul {
+  margin: 5% 0;
+  padding: 0 20px;
+}
+
+ul li {
+  list-style-type: none;
+  text-align: left;
+  padding: 5% 0%;
+  line-height: 1.5em;
+}
+
+input[type='checkbox'] + .pure-toggle {
+  display: inline-block;
+  color: #c1c2c3;
+  transition: all 0.5s ease-out;
+  cursor: pointer;
+  font-weight: 200;
+}
+input[type='checkbox'] + .pure-toggle:hover {
+  color: black;
+}
+input[type='checkbox'] + .pure-toggle i {
+  width: 30px;
+}
+input[type='checkbox'] + .pure-toggle span {
+  margin-left: 10px;
+  vertical-align: super;
+}
+
+#list-I input[type='checkbox']:checked + .pure-toggle {
+  color: #FA82C8;
+}
+
+#list-II input[type='checkbox']:checked + .pure-toggle {
+  color: #829EFA;
+}
+
+input[type='checkbox']:checked + .pure-toggle i:before {
+  content: "\f00c";
+  transition: all 0.5s ease-out;
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+

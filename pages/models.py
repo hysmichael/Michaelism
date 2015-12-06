@@ -5,8 +5,8 @@ from colorful.fields import RGBColorField
 class Essay(models.Model):
     title       = models.CharField(max_length=100, unique=True)
     slug        = models.SlugField(max_length=100, unique=True)
-    abstract    = models.TextField(null=True, blank = True)
-    preface     = models.TextField(null=True, blank = True)
+    abstract    = models.TextField(null=True, blank=True)
+    preface     = models.TextField(null=True, blank=True)
     created_at  = models.DateField(db_index=True, auto_now_add=True)
     posted_at   = models.DateField(db_index=True, null=True, blank=True)
     category    = models.ForeignKey('Category', related_name='essays', null=True, blank=True)
