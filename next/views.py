@@ -6,13 +6,17 @@ import json
 from models import *
 
 def next_view(request, username):
-    entries_I   = NextEntry.objects.filter(username=username, done=False, list_id=1).order_by('created_at').all()
-    entries_II  = NextEntry.objects.filter(username=username, done=False, list_id=2).order_by('created_at').all()
-    return render(request, 'next.html', {
-        'username': username,
-        'list_I': entries_I,
-        'list_II': entries_II,
-    })
+    try:
+        NextUser.objects.get(username=username)
+        entries_I   = NextEntry.objects.filter(username=username, done=False, list_id=1).order_by('created_at').all()
+        entries_II  = NextEntry.objects.filter(username=username, done=False, list_id=2).order_by('created_at').all()
+        return render(request, 'next.html', {
+            'username': username,
+            'list_I': entries_I,
+            'list_II': entries_II,
+        })
+    except NextUser.DoesNotExist:
+        return render(request, 'next_unauthorized.html')
 
 def add_entry(request, username):
     json_data = json.loads(request.body)

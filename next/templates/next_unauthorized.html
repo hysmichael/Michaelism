@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+  <head>
+
+    <!-- Basic Configurations -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href={% static "favicon.png"%} />
+
+    <!-- Page Information -->
+    <title> Next </title>
+    <meta name="author" content="Michael Yanshu Hong">
+
+    <!-- CSS Files -->
+      <!-- Font Awesome core CSS -->
+      <link href={% static "css/font-awesome.min.css" %} rel="stylesheet">
+      <!-- Google Font CSS -->
+      <link href='https://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Cinzel+Decorative:900|PT+Sans:400italic' rel='stylesheet' type='text/css'>
+
+      <!-- Additional CSS -->
+      <link href={% static "css/base.css" %} rel="stylesheet">
+      <link href={% static "css/next.css" %} rel="stylesheet">
+
+    <style>
+      body {
+          background-image: url("{% static 'image/bg_2.jpg' %}");
+          background-color: black;
+          background-size: cover;
+      }
+    </style>
+
+  </head>
+
+  <body>
+  
+  <h1>Next</h1>
+  <p class="subtitle">Minimalist Bucket List</p>
+
+  <p class='instruction' id='ins-top'>Unauthorized user. Please contact author for further information.</p>
+
+  <!-- Scripts -->
+    <!-- Skil and Jquery -->
+      <script src={% static "js/jquery.min.js" %}></script>
+
+
+  </body>
+</html>

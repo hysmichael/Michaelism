@@ -10,3 +10,10 @@ class NextEntry(models.Model):
     def __unicode__(self):
         return '%s' % self.content
 
+
+class NextUser(models.Model):
+    username    = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return '%s' % self.username
+
