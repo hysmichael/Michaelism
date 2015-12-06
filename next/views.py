@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.middleware.csrf import get_token
 
 import json
 
@@ -14,6 +15,7 @@ def next_view(request, username):
             'username': username,
             'list_I': entries_I,
             'list_II': entries_II,
+            'csrf_token': get_token(request),
         })
     except NextUser.DoesNotExist:
         return render(request, 'next_unauthorized.html')

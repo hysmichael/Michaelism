@@ -59,7 +59,8 @@ h1 {
 }
 
 #new-entry-div i {
-  padding-right: 3px;
+  padding-right: 2px;
+  padding-left: 2px;
 }
 
 
@@ -70,7 +71,7 @@ h1 {
 }
 
 #new-entry-div input {
-  width: 93%;
+  width: calc(100% - 35px);
   border: none;
   padding: 10px 0 8px 0;
   font-size: 13pt;
