@@ -27,6 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
 	'hongyanshu.com',
+    'yanshuhong.com',
 	'52.89.110.142',
 	'172.31.21.175',
 	'ec2-52-89-110-142.us-west-2.compute.amazonaws.com', 
