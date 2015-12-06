@@ -47,7 +47,7 @@
 
 
   <div class="list" id="list-I">
-    <h3>Short Term</h3>
+    <h3 onclick="clickListTitle(1)">Short Term</h3>
     <ul>
     {% for entry in list_I %}
       <li>
@@ -61,7 +61,7 @@
   </div>
 
   <div class="list" id="list-II">
-    <h3>Long Term</h3>
+    <h3 onclick="clickListTitle(2)">Long Term</h3>
     <ul>
     {% for entry in list_II %}
       <li>
@@ -127,6 +127,7 @@ function toggleCheckbox(element, list_id) {
       false)
  }
 
+
 var list_id = 1;
 
 $("#new-entry-input").keyup(function(event) {
@@ -157,19 +158,45 @@ $("#new-entry-input").keyup(function(event) {
     } 
 });
 
+
+function changePlusColor() {
+  if (list_id == 1) {
+    $("#new-entry-div").css("color", "#FA82C8");
+  } else {
+    $("#new-entry-div").css("color", "#829EFA");
+  }
+}
+
+
+function clickListTitle(clicked_list_id) {
+    list_id = clicked_list_id;
+    changePlusColor();
+    $("#new-entry-div").css('display','block');
+    setTimeout(function() {
+      $("#new-entry-div input").focus();
+    }, 300);
+}
+
+
 $(document).keypress(function(event) { 
+  var tag = event.target.tagName.toLowerCase();
+  if (tag == 'input' || tag == 'textarea') {
+    return;
+  }
   if (event.charCode == 49 || event.charCode == 50 || event.keyCode == 13) {
     if (event.charCode == 49 || event.keyCode == 13) {
       list_id = 1;
     } else {
       list_id = 2;
     }
+    changePlusColor();
   $("#new-entry-div").css('display','block');
   setTimeout(function() {
     $("#new-entry-div input").focus();
   }, 300);
   }
 });
+
 
   </script>
 
